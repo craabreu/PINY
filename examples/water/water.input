@@ -1,0 +1,88 @@
+~sim_gen_def[
+
+  \simulation_typ{md}
+  \ensemble_typ{nvt_isok} 
+  \num_time_step{2000000}
+  \restart_type{restart_pos}  initial restart_pos restart_posvel restart_all
+  \time_step{90.0}
+  \temperature{300}
+  \generic_fft_opt{off}
+
+]
+
+~sim_list_def[
+
+  \neighbor_list{ver_list} use a verlet neighbor list
+  \lnkcell_cell_divs{13}
+  \update_type{no_list}
+  \verlist_skin{1.8}
+
+]
+
+~sim_vol_def[
+
+  \periodicity{3}
+]
+
+~sim_class_PE_def[
+
+  \shift_inter_pe{swit}   
+  \ewald_alpha{7}	 
+  \ewald_kmax{15}      
+  \ewald_pme_opt{on}
+  \ewald_kmax_pme{30}
+  \ewald_interp_pme{8}
+  \inter_spline_pts{2000}
+  \ewald_respa_pme_opt{off}
+  \ewald_respa_kmax{0}   
+  \ewald_respa_kmax_pme{0} 
+  \ewald_respa_interp_pme{6} 
+  \scratch_length{100} 
+  \inter_PE_calc_freq{1}
+
+]
+
+~sim_run_def[
+
+   \init_resmp_atm_vel{off}  
+   \resmpl_frq_atm_vel{0}	
+   \respa_steps_lrf{30}
+   \respa_rheal{3}
+   \respa_inter_new{on}
+   \respa_switch_order{5}
+   \respa_steps_intra{6}
+   \respa_steps_torsion{1}
+   \group_con_tol{1e-9} 
+   \zero_com_vel{no}   
+]
+
+~sim_nhc_def[
+
+    \init_resmp_atm_nhc{off}
+    \resmpl_atm_nhc{0}	
+    \atm_nhc_tau_def{10.0}
+    \yosh_steps_nhc{7}		
+    \respa_steps_nhc{4} 
+    \atm_nhc_len{4}	
+    \respa_xi_opt{3}   
+
+]
+
+~sim_write_def[
+    \SIM_NAME{water.out}    
+    \write_screen_freq{5} 
+    \instant_file{water.iavg}
+    \write_inst_freq{10000000}
+    \atm_pos_file{water.confp}
+    \write_pos_freq{6}
+    \atm_vel_file{water.confv}	
+    \write_vel_freq{1000000}    
+    \atm_force_file{water.conff}
+    \write_force_freq{10000000}	
+    \write_dump_freq{500}	
+   \out_restart_file{w64_P1.coords_out} 
+   \in_restart_file{coords.init}  
+   \mol_set_file{water.set} 
+   \conf_file_format{formatted}
+]
+

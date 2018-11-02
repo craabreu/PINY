@@ -1,0 +1,9 @@
+
+~molecule_def[ \mol_parm_file{water.parm}\mol_opt_nhc{mass_mol}
+          \num_mol{512}\mol_index{1}\mol_name{water}]
+
+~data_base_def[\bond_file{pi_md.bond}
+               \bend_file{pi_md.bend}
+               \inter_file{pi_md.inter}]
+
+

@@ -1,0 +1,428 @@
+/*==========================================================================*/
+/*cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc*/
+/*==========================================================================*/
+/*                                                                          */
+/*                         PI_MD:                                           */
+/*             The future of simulation technology                          */
+/*             ------------------------------------                         */
+/*                     Module: comm_groups.c                                */
+/*                                                                          */
+/* Subprogram contains MPI utils and communication routines for interface   */
+/*                                                                          */
+/*==========================================================================*/
+/*cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc*/
+/*==========================================================================*/
+
+
+#include "standard_include.h"
+#include "../typ_defs/typedefs_gen.h"
+#include "../typ_defs/typedefs_class.h"
+#include "../typ_defs/typedefs_bnd.h"
+#include "../typ_defs/typedefs_par.h"
+#include "../typ_defs/typedefs_cp.h"
+#include "../proto_defs/proto_communicate_wrappers.h"
+#include "../proto_defs/proto_communicate_local.h"
+#include "../proto_defs/proto_friend_lib_entry.h"
+#define MAXPROCS 128
+
+#define DEBUG_OFF
+
+/*==========================================================================*/
+/*cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc*/
+/*==========================================================================*/
+
+void build_communicate_groups(COMMUNICATE *communicate,int numprocs_bead,
+                              int pi_beads,CP *cp,int cp_on)
+
+/*=======================================================================*/
+/*             Begin routine                                              */
+{/*begin routine */
+
+#include "../typ_defs/typ_mask.h"
+
+      int myid       = communicate->myid;
+      int np_states  = communicate->np_states;
+      int np_beads   = communicate->np_beads;
+      int np         = communicate->np;
+      int np_forc    = communicate->np_forc;
+
+      MPI_Comm world;
+      int i,ii,loop,iii,ntemp,idiv,irem,icase,ioff;
+      int *ranks;
+      MPI_Comm *level_comm,junk_comm;
+      MPI_Group excl_group,temp;
+
+      Comm_dup(communicate->world,&(world));
+
+/*=======================================================================*/
+/*=======================================================================*/
+/*                                                                       */
+
+      ranks = (int *) cmalloc(MAXPROCS*sizeof(int));
+      level_comm = (MPI_Comm *) cmalloc(MAXPROCS*sizeof(MPI_Comm));
+
+/*=======================================================================*/
+/*             Get path_integral level communicator                      */
+
+
+
+        ioff = myid%np_forc;
+
+        Barrier(world);
+
+
+     if(cp_on==1){icase=1;}
+     if(cp_on==0){icase=2;}
+
+ switch(icase){
+  case 2:
+        communicate->comm_beads = build_comm_gen(np,np_beads,np_forc,myid,
+                        &(communicate->myid_bead),ranks,world);
+
+        communicate->comm_beads_forc =  build_comm_gen(np,np_beads,np_forc,
+                     myid,&(communicate->myid_bead_forc),ranks,world); 
+        break;
+
+  case 1:
+        communicate->comm_beads = build_comm_gen(np,np_beads,np_states,myid,
+                        &(communicate->myid_bead),ranks,world);
+
+        communicate->comm_beads_forc =  build_comm_gen(np,np_beads,np_states,
+                     myid,&(communicate->myid_bead_forc),ranks,world); 
+        break;
+ }
+
+#ifdef RANKS
+/*=======================================================================*/
+/*             Get rank of processor in new communicator                 */
+
+
+     if((myid%np_states==0)||(myid%np_forc==0)){
+       for(i=0;i < pi_beads;i++){
+         if(myid==ranks[i]){
+	   /*           Comm_rank(communicate->comm_beads,&communicate->myid_bead);*/
+         }/*endif*/
+       }/*endfor*/
+     }/*endif*/
+
+
+     for(i=0;i < pi_beads;i++){
+         if(myid==ranks[i]){
+          Comm_rank(communicate->comm_beads_forc,&communicate->myid_bead_forc);
+         }/*endif*/
+     }/*endfor*/
+
+     Barrier(world);
+#endif
+
+/*=======================================================================*/
+/*             Calculate the case                                        */
+
+     if(cp_on==1&&np_forc==1){icase=1;}
+     if(cp_on==1&&np_forc==np_states){icase=2;}
+     if(cp_on==0){icase=3;}
+
+ switch(icase){
+  case 1:
+ 
+   ranks[0] = myid;
+   Comm_group(world,&excl_group);
+   Group_incl(excl_group,np_forc,ranks,&temp);
+   Comm_create(world,temp,&communicate->comm_forc);
+   communicate->myid_forc = 0;
+
+    if(numprocs_bead == 1){
+      ranks[0] = myid;
+      Comm_group(world,&excl_group);
+      Group_incl(excl_group,np_states,ranks,&temp);
+      Comm_create(world,temp,&communicate->comm_states);
+      communicate->myid_state = 0;
+      }/*endif*/
+     else{
+       ii = 0;
+      for(loop=0;loop<np;loop+=np_states){
+       level_comm[ii] = get_level_comm(np_states,np_beads,
+                                                       world,loop,ranks,myid);
+       if(myid >=loop && myid < loop+np_states){ 
+        Comm_rank(level_comm[ii],&communicate->myid_state);
+        communicate->comm_states = level_comm[ii];
+       }/*endif*/   
+       Barrier(world);
+       ii++;
+       }/*endfor*/
+      }/*end else*/
+  
+     communicate->myid_bead_prime = communicate->myid_bead;
+     if(communicate->myid_state!=0){
+       for(i=0;i<=communicate->np_beads-1;i++){
+         if((communicate->myid>(communicate->np_states)*i)
+            &&(communicate->myid<=(communicate->np_states)*(i+1))){       
+            communicate->myid_bead_prime = i;
+	  }/*endif*/
+       }/*endfor*/
+       communicate->myid_bead       = communicate->np_beads;
+     }/*endif*/
+     break;
+
+ case 2:
+
+    if(numprocs_bead == 1){
+      ranks[0] = myid;
+      Comm_group(world,&excl_group);
+      Group_incl(excl_group,np_forc,ranks,&temp);
+      Comm_create(world,temp,&communicate->comm_forc);
+
+      ranks[0] = myid;
+      Comm_group(world,&excl_group);
+      Group_incl(excl_group,np_states,ranks,&temp);
+      Comm_create(world,temp,&communicate->comm_states);
+
+      communicate->myid_forc = 0;
+      communicate->myid_state = 0;
+     }/*endif*/
+     else{
+       ii = 0;
+      for(loop=0;loop<np;loop+=np_states){
+       level_comm[ii] = get_level_comm(np_states,np_beads,
+                                                       world,loop,ranks,myid);
+       if(myid >=loop && myid < loop+np_states){ 
+        Comm_rank(level_comm[ii],&communicate->myid_state);
+        communicate->comm_states = level_comm[ii];
+        Comm_rank(level_comm[ii],&communicate->myid_forc);
+        communicate->comm_forc = level_comm[ii];
+       }/*endif*/   
+       Barrier(world);
+       ii++;
+       }/*endfor*/
+      }/*end else*/
+  
+     communicate->myid_bead_prime = communicate->myid_bead;
+     if(communicate->myid_state!=0){
+       for(i=0;i<=communicate->np_beads-1;i++){
+         if((communicate->myid>(communicate->np_states)*i)
+            &&(communicate->myid<=(communicate->np_states)*(i+1))){       
+            communicate->myid_bead_prime = i;
+	  }/*endif*/
+       }/*endfor*/
+       communicate->myid_bead       = communicate->np_beads;
+     }/*endif*/
+     break;
+
+ case 3:
+
+      ranks[0] = myid;
+      Comm_group(world,&excl_group);
+      Group_incl(excl_group,np_states,ranks,&temp);
+      Comm_create(world,temp,&communicate->comm_states);
+      communicate->myid_state = 0;
+
+    if(numprocs_bead == 1){
+      ranks[0] = myid;
+      Comm_group(world,&excl_group);
+      Group_incl(excl_group,np_forc,ranks,&temp);
+      Comm_create(world,temp,&communicate->comm_forc);
+      ranks[0] = myid;
+      communicate->myid_forc = 0;
+
+      Comm_group(world,&excl_group);
+      Group_incl(excl_group,np_states,ranks,&temp);
+      Comm_create(world,temp,&communicate->comm_states);
+     }/*endif*/
+     else{
+       ii = 0;
+       
+      for(loop=0;loop<np;loop+=np_forc){
+        level_comm[ii] = get_level_comm(np_forc,np_beads,
+                                                       world,loop,ranks,myid);
+
+       if(myid >=loop && myid < loop+np_forc){ 
+        Comm_rank(level_comm[ii],&communicate->myid_forc);
+       communicate->comm_forc = level_comm[ii];
+       }/*endif*/   
+       Barrier(world);
+       ii++;
+       }/*endfor*/
+      }/*end else*/
+  
+     communicate->myid_bead_prime = communicate->myid_bead;
+     if(communicate->myid_forc!=0){
+       for(i=0;i<=communicate->np_beads-1;i++){
+         if((communicate->myid>(communicate->np_forc)*i)
+            &&(communicate->myid<=(communicate->np_forc)*(i+1))){       
+            communicate->myid_bead_prime = i;
+	  }/*endif*/
+       }/*endfor*/
+       communicate->myid_bead       = communicate->np_beads;
+     }/*endif*/
+     break;
+ }/*end switch*/
+
+
+
+#ifdef DEBUG
+      printf("all myid's %d %d %d %d %d\n",
+                     communicate->myid,
+                     communicate->myid_bead,
+                     communicate->myid_bead_forc,
+                     communicate->myid_bead_prime,
+                     communicate->myid_forc);
+      Barrier(world);
+      scanf("%d",&iii);
+
+ /*      printf("all my comms %d %d %d %d %d\n",communicate->myid,
+                     communicate->world,
+                     communicate->comm_forc,
+                     communicate->comm_beads,
+                     communicate->comm_beads_forc);
+      Barrier(world);
+      scanf("%d",&iii);*/
+#endif
+
+/*------------------------------------------------------------------------*/
+/*  Free the memory                                                       */
+
+      cfree(&ranks[0]);
+      cfree(&level_comm[0]);
+
+/*------------------------------------------------------------------------*/
+} /*end routine*/ 
+/*==========================================================================*/
+
+
+
+/*=======================================================================*/
+/*             State level comm                                          */
+
+MPI_Comm get_level_comm(int np_states,int np_beads,MPI_Comm world,
+                                int loop,int *ranks,int myid)
+
+/*=======================================================================*/
+/*             Begin routine                                              */
+{/*begin routine */
+/*=======================================================================*/
+/*             Local variable declarations                                */
+#include "../typ_defs/typ_mask.h"
+   int excl_procs,i;
+   int iii,ntemp;
+   MPI_Group excl_group,temp;
+   MPI_Comm state_level_comm;
+   
+   /***************Create the state level communicator*****************/
+
+   for(i=0;i < np_states;i++){
+     ranks[i] = loop + i;
+   }/*endfor*/  
+
+    Comm_group(world,&excl_group);
+    Group_incl(excl_group,np_states,ranks,&temp);
+    Comm_create(world,temp,&state_level_comm);
+
+
+    Group_free(&excl_group);
+    Group_free(&temp);
+
+return state_level_comm;
+
+/*------------------------------------------------------------------------*/
+} /*end routine*/ 
+/*==========================================================================*/
+
+
+
+
+
+
+
+
+/*=======================================================================*/
+/*ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc*/
+/*=======================================================================*/
+
+MPI_Comm build_comm_gen(int np, int np_outer, int np_inner, int myid, 
+                      int *myid_outer,int *ranks, MPI_Comm world)
+
+/*=======================================================================*/
+/*             Begin routine                                             */
+{/*begin routine */
+/*=======================================================================*/
+/*  Local Variables */
+
+#include "../typ_defs/typ_mask.h"
+  int iii;
+  int myid_inner;
+
+  int i,j,k;
+  int ngroup,itype=1;
+
+  MPI_Group world_group,incl_group;
+  MPI_Comm gen_comm;
+  MPI_Comm junk_comm;
+
+/*=====================================================================*/
+/* Set local inner id's                                                */
+
+  myid_inner = (myid % np_inner);
+
+  if(np_outer*np_inner != np){
+    printf("Incorrect number of procs %d vs %d\n",np,np_outer*np_inner);
+    Finalize();
+    exit(0);
+  }/*endfor*/
+
+/*=======================================================================*/
+/*             Get rank of processor in new communicator                 */
+
+  Comm_group(world,&world_group);
+
+  for(j=0;j < np_inner;j++){
+ /*-----------------------------------------------------------------------*/
+ /* i) set the ranks   */
+
+    if(itype==1){
+      for(i=0;i<np_outer;i++){
+        ranks[i] = np_inner*i+j;
+      }/*endfor*/
+    }else{
+      for(i=0;i<np_outer;i++){
+        ranks[i] = np_inner*j+i;
+      }/*endfor*/
+    }
+ /*-----------------------------------------------------------------------*/
+ /* ii) Create the new communicator                                      */
+
+     Group_incl(world_group,np_outer,ranks,&incl_group);
+     if(myid_inner==j){
+       Comm_create(world,incl_group,&gen_comm);
+       Comm_rank(gen_comm,myid_outer);
+
+#ifdef DEBUG
+       if(itype==1){
+         if(myid!= np_inner*(*myid_outer) + myid_inner){
+            printf("you suck1\n");
+	 }
+       }else{
+         if(myid!= np_inner*myid_inner + *myid_outer){
+            printf("you suck2\n");
+	 }
+       }
+#endif
+     }else{
+       Comm_create(world,incl_group,&junk_comm);
+     }/*endif*/
+     Group_free(&incl_group);
+   }/*endfor*/
+
+   Group_free(&world_group);
+
+   return gen_comm;
+
+/*------------------------------------------------------------------------*/
+  } /*end routine*/ 
+/*==========================================================================*/
+
+
+
+
+
+
+

@@ -7,7 +7,7 @@
 /*             ------------------------------------                         */
 /*                     Module: control_inter_params                         */
 /*                                                                          */
-/* This reads in and sets up the electron-atom interaction pseudopotential  */ 
+/* This reads in and sets up the electron-atom interaction pseudopotential  */
 /*                                                                          */
 /*==========================================================================*/
 /*cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc*/
@@ -44,7 +44,7 @@ void control_inter_params(INTERACT *interact,SPLINE_PARSE *spline_parse,
 /*======================================================================*/
 /*          Local variable declarations                                */
 #include "../typ_defs/typ_mask.h"
-  
+
   DATA_BASE_ENTRIES *inter_base;          /* Lst: Database parameters    */
   double *eps,*sig;                      /* Lst: Lennard-Jones params   */
   double *awill,*bwill,*c6m,*c8m,*c10m;  /* Lst: Williams params        */
@@ -67,13 +67,13 @@ void control_inter_params(INTERACT *interact,SPLINE_PARSE *spline_parse,
   int nsplin_mall_tot;
   int ninter_mall;
 
-  int ninter_unique;                     /* Num: number of interactions with 
+  int ninter_unique;                     /* Num: number of interactions with
                                              unqiue paramters */
   int ninter_unique_mall;
- 
+
 /*======================================================================*/
 /* 0) Write to screen                                                   */
-  
+
   if(myid==0){
     ninter = natm_typ*(natm_typ + 1)/2;
     putchar('\n');
@@ -100,8 +100,8 @@ void control_inter_params(INTERACT *interact,SPLINE_PARSE *spline_parse,
   c8m        = (double *) cmalloc(ninter_mall*sizeof(double))-1;
   c9m        = (double *) cmalloc(ninter_mall*sizeof(double))-1;
   c10m       = (double *) cmalloc(ninter_mall*sizeof(double))-1;
-  fun_key    = (char *)cmalloc(MAXWORD*sizeof(char));  
-  cinter     = (CATM_LAB *)cmalloc(ninter*sizeof(CATM_LAB))-1;  
+  fun_key    = (char *)cmalloc(MAXWORD*sizeof(char));
+  cinter     = (CATM_LAB *)cmalloc(ninter*sizeof(CATM_LAB))-1;
   ifound     = (int *)cmalloc(ninter*sizeof(int))-1;
   isearch    = (int *)cmalloc(ninter*sizeof(int))-1;
   igood      = (int *)cmalloc(ninter*sizeof(int))-1;
@@ -284,7 +284,7 @@ if(num_proc > 1){ Bcast(&ninter_unique,1,MPI_INT,0,comm);}
            )*1.e-06;
 
   *tot_memory += now_mem;
-  
+
   if(myid==0){
    printf("There are %d unique interactions \n",ninter_unique);
    printf("Intermolecular allocation: %g Mbytes; Total memory: %g Mbytes\n",
@@ -343,7 +343,7 @@ if(num_proc > 1){ Bcast(&ninter_unique,1,MPI_INT,0,comm);}
 /*  VIII) Get the long range correction                                   */
 
   interact->clong = 0.0;
-  interact->clong_res = 0.0;      
+  interact->clong_res = 0.0;
   if(iperd == 3) {
 
     get_clong(natm_tot,natm_typ,ninter,iatm_typ,c6m,
@@ -353,7 +353,7 @@ if(num_proc > 1){ Bcast(&ninter_unique,1,MPI_INT,0,comm);}
              interact->iswit_vdw,interact->rheal,interact->rheal_res);
 
   } /* endif */
-  
+
   if(myid==0){
    printf("Dispersion long range parameter %.15g \n",interact->clong);
    if(int_res_ter==1){
@@ -444,7 +444,7 @@ void inter_coef(DICT_WORD *dict,char filename[],char fun_key[],
 
 /*=======================================================================*/
 /* III) Convert and assign cutoffs */
-  
+
   sscanf(dict[4].keyarg,"%lf",&cutti);
   sscanf(dict[5].keyarg,"%lf",&cutoff);
   sscanf(dict[6].keyarg,"%lf",&cutoff_res);
@@ -466,7 +466,7 @@ void inter_coef(DICT_WORD *dict,char filename[],char fun_key[],
 
 /*=======================================================================*/
 /* IV) Convert and assign Lennard-Jones                                  */
-  
+
   if(strcasecmp(dict[3].keyarg,"lennard-Jones") == 0) {
     inter_base[ibase].inter_label = 2;
     sscanf(dict[7].keyarg,"%lg",&sig);
@@ -488,7 +488,7 @@ void inter_coef(DICT_WORD *dict,char filename[],char fun_key[],
 
 /*=======================================================================*/
 /*  3) Convert and assign Williams                                        */
-  
+
   if(strcasecmp(dict[3].keyarg,"williams") == 0) {
     inter_base[ibase].inter_label = 3;
     sscanf(dict[9].keyarg,"%lg",&c6m);
@@ -513,7 +513,7 @@ void inter_coef(DICT_WORD *dict,char filename[],char fun_key[],
 
 /*=======================================================================*/
 /*  5) Convert and assign Null                                           */
-  
+
   if(strcasecmp(dict[3].keyarg,"null") == 0) {
     inter_base[ibase].inter_label = 4;
     inter_base[ibase].c6m = 0.0;
@@ -521,7 +521,7 @@ void inter_coef(DICT_WORD *dict,char filename[],char fun_key[],
 
 /*=======================================================================*/
 /*  4) Convert and assign Aziz-Chen                                      */
-  
+
   if(strcasecmp(dict[3].keyarg,"aziz-chen") == 0) {
     inter_base[ibase].inter_label = 6;
     sscanf(dict[9].keyarg,"%lg",&c6m);
@@ -551,7 +551,7 @@ void inter_coef(DICT_WORD *dict,char filename[],char fun_key[],
     inter_base[ibase].awill      = awill/BOLTZ;
     inter_base[ibase].bwill      = bwill*BOHR;
     inter_base[ibase].cwill      = cwill*bohr2;
-    inter_base[ibase].rm_swit    = rm_swit/BOHR; 
+    inter_base[ibase].rm_swit    = rm_swit/BOHR;
     inter_base[ibase].c6m        = c6m/(BOLTZ*bohr6);
     inter_base[ibase].c8m        = c8m/(BOLTZ*bohr8);
     inter_base[ibase].c9m        = c9m/(BOLTZ*bohr9);
@@ -608,27 +608,27 @@ void assign_base_inter(DATA_BASE_ENTRIES *inter_base,int nbase,int *ifound,
       bwill[i]       = 0.0;
       cwill[i]       = 0.0;
       rm_swit[i]     = 0.0;
-      c8m[i]         = 0.0;  
-      c9m[i]         = 0.0;  
-      c10m[i]        = 0.0;  
+      c8m[i]         = 0.0;
+      c9m[i]         = 0.0;
+      c10m[i]        = 0.0;
 
       inter_label[i] = inter_base[ibase].inter_label;
       cutti[i]       = inter_base[ibase].cutti;
-      cutoff[i]      = inter_base[ibase].cutoff;     
+      cutoff[i]      = inter_base[ibase].cutoff;
       cutoff_res[i]  = inter_base[ibase].cutoff_res;
 
       switch(inter_label[i]){
         case 2:  eps[i]     = inter_base[ibase].eps;
                  sig[i]     = inter_base[ibase].sig;
-                 c6m[i]     = inter_base[ibase].c6m;  
+                 c6m[i]     = inter_base[ibase].c6m;
                break;
         case 3:  awill[i]   = inter_base[ibase].awill;
                  bwill[i]   = inter_base[ibase].bwill;
                  c6m[i]     = inter_base[ibase].c6m;
                  c8m[i]     = inter_base[ibase].c8m;
-                 c10m[i]    = inter_base[ibase].c10m; 
+                 c10m[i]    = inter_base[ibase].c10m;
                break;
-        case 4:  c6m[i]     =  0.0;  
+        case 4:  c6m[i]     =  0.0;
                break;
         case 6:  awill[i]   = inter_base[ibase].awill;
                  bwill[i]   = inter_base[ibase].bwill;
@@ -637,7 +637,7 @@ void assign_base_inter(DATA_BASE_ENTRIES *inter_base,int nbase,int *ifound,
                  c6m[i]     = inter_base[ibase].c6m;
                  c8m[i]     = inter_base[ibase].c8m;
                  c9m[i]     = inter_base[ibase].c9m;
-                 c10m[i]    = inter_base[ibase].c10m; 
+                 c10m[i]    = inter_base[ibase].c10m;
                break;
       }/*endswitch*/
     }/*endif*/
@@ -720,7 +720,7 @@ void set_inter_splin(double sig[],double eps[],double a[],double b[],
       vcut_coul[i] = 0.0;
     }/* endfor */
   }/* endif: shift off */
-  
+
 /*======================================================================*/
 /*  III) Spline the ewald coulomb stuff                                 */
 
@@ -744,15 +744,15 @@ void set_inter_splin(double sig[],double eps[],double a[],double b[],
       if(myid==0){
        printf("@@@@@@@@@@@@@@@@@@@@_error_@@@@@@@@@@@@@@@@@@@@\n");
        printf("Ewald convergence parameter too small !\n");
-       printf("%g*rmax requested, at least 3.4*rmax required\n", 
+       printf("%g*rmax requested, at least 3.4*rmax required\n",
              (alp_ewd*rmax_c));
        printf("If this criteria is not met, energy will drift.\n");
        printf("@@@@@@@@@@@@@@@@@@@@_error_@@@@@@@@@@@@@@@@@@@@\n");
        fflush(stdout);
       }/*endif*/
       /* exit(1);*/
-     }/*endif*/    
-    }/*endif for iperd>0*/    
+     }/*endif*/
+    }/*endif for iperd>0*/
     ioff = 0;
     ishift_now = ishift;
     for(i=1;i <= ninter;i++) {
@@ -765,9 +765,9 @@ void set_inter_splin(double sig[],double eps[],double a[],double b[],
              interact->rheal,interact->dielectric_opt,
              interact->dielectric_rheal,interact->dielectric_cut,
              interact->dielectric_eps);
-       /* for new respa split spline up -erf/r */ 
+       /* for new respa split spline up -erf/r */
        if(int_res_new==1) {
-         itype=7; 
+         itype=7;
          spline_vdv(rmin,rmax,&(interact->cv1_c)[ioff],&(interact->cdv1_c)[ioff],
              interact->nsplin,&dr_tmp,&dri_tmp,sigt,epst,at,bt,ct,rmt,c6t,
 		    c8t,c9t,c10t,alp_ewd,qijp,iiperd,itype,int_res_new,ishift_now,
@@ -816,7 +816,7 @@ void sort_inter_params(double *eps,double *sig,
 /*=======================================================================*/
 /*             Local variable declarations                                */
 
-  double *epst,*sigt;  
+  double *epst,*sigt;
   double *awillt,*bwillt,*cwillt,*rm_switt;
   double *c6mt,*c8mt,*c9mt,*c10mt;
   double *cutofft,*cutoff_rest,*cuttit;
@@ -834,23 +834,23 @@ void sort_inter_params(double *eps,double *sig,
 /*I) Malloc local inter parameters and assign them */
 /*-------------------------------------------------*/
 
-  epst     = (double *) calloc(ninter,sizeof(double))-1; 
-  sigt     = (double *) calloc(ninter,sizeof(double))-1; 
-  awillt   = (double *) calloc(ninter,sizeof(double))-1; 
-  bwillt   = (double *) calloc(ninter,sizeof(double))-1; 
-  cwillt   = (double *) calloc(ninter,sizeof(double))-1; 
-  rm_switt = (double *) calloc(ninter,sizeof(double))-1; 
+  epst     = (double *) calloc(ninter,sizeof(double))-1;
+  sigt     = (double *) calloc(ninter,sizeof(double))-1;
+  awillt   = (double *) calloc(ninter,sizeof(double))-1;
+  bwillt   = (double *) calloc(ninter,sizeof(double))-1;
+  cwillt   = (double *) calloc(ninter,sizeof(double))-1;
+  rm_switt = (double *) calloc(ninter,sizeof(double))-1;
 
-  c6mt     = (double *) calloc(ninter,sizeof(double))-1; 
-  c8mt     = (double *) calloc(ninter,sizeof(double))-1; 
-  c9mt     = (double *) calloc(ninter,sizeof(double))-1; 
-  c10mt    = (double *) calloc(ninter,sizeof(double))-1; 
+  c6mt     = (double *) calloc(ninter,sizeof(double))-1;
+  c8mt     = (double *) calloc(ninter,sizeof(double))-1;
+  c9mt     = (double *) calloc(ninter,sizeof(double))-1;
+  c10mt    = (double *) calloc(ninter,sizeof(double))-1;
 
-  cutofft     = (double *) calloc(ninter,sizeof(double))-1; 
-  cutoff_rest = (double *) calloc(ninter,sizeof(double))-1; 
-  cuttit      = (double *) calloc(ninter,sizeof(double))-1; 
+  cutofft     = (double *) calloc(ninter,sizeof(double))-1;
+  cutoff_rest = (double *) calloc(ninter,sizeof(double))-1;
+  cuttit      = (double *) calloc(ninter,sizeof(double))-1;
 
-  ilabelt = (int    *) calloc(ninter,sizeof(int))-1; 
+  ilabelt = (int    *) calloc(ninter,sizeof(int))-1;
 
   for(i=1; i<= ninter; i++){
     epst[i]     = eps[i];
@@ -876,17 +876,17 @@ void sort_inter_params(double *eps,double *sig,
 
 /*=======================================================================*/
 /*-----------------------------------------------------------------*/
-/*II) Count up the number of different intermolecular interactions */ 
+/*II) Count up the number of different intermolecular interactions */
 /*-----------------------------------------------------------------*/
 
-  nlj   = 0; 
+  nlj   = 0;
   n3    = 0;
-  nnull = 0; 
+  nnull = 0;
   n5    = 0;
   n6    = 0;
  for(i=1; i<= ninter; i++){
   switch(inter_label[i]){
-   case 2: nlj++; break; 
+   case 2: nlj++; break;
    case 3: n3++;  break;
    case 4: nnull++;  break;
    case 5: n5++;  break;
@@ -942,7 +942,7 @@ void sort_inter_params(double *eps,double *sig,
 /*---------------------------------------------*/
 
    ioff = n6;
-   iup  = ninter - ioff; 
+   iup  = ninter - ioff;
  for(i = iup; i > 1; i--){
   if(ilabelt[i] != 5){
    for(j=i-1; j >=  1; j--){
@@ -972,7 +972,7 @@ void sort_inter_params(double *eps,double *sig,
 /*------------------------------------------*/
 
    ioff = n6 + n5;
-   iup  = ninter - ioff; 
+   iup  = ninter - ioff;
  for(i = iup; i > 1; i--){
   if(ilabelt[i] != 3){
    for(j=i-1; j >=  1; j--){
@@ -1002,7 +1002,7 @@ void sort_inter_params(double *eps,double *sig,
 /*--------------------------------------------*/
 
    ioff = n6 + n5 + n3;
-   iup  = ninter - ioff; 
+   iup  = ninter - ioff;
  for(i = iup; i > 1; i--){
   if(ilabelt[i] != 4){
    for(j=i-1; j >=  1; j--){
@@ -1027,23 +1027,23 @@ void sort_inter_params(double *eps,double *sig,
   }/*endif*/
  }/*endfor*/
 
- 
+
 /*=======================================================================*/
 /*--------------------------------------------*/
 /*IV) SORT LJ and NULL Parameters             */
 /*    same eps sig rcut in order              */
 /*--------------------------------------------*/
 
- ioff   = n3+n5+n6; 
+ ioff   = n3+n5+n6;
  i = 1;
  while(i< ninter-ioff){
   k = i;
   for(j=i+1; j <=  ninter-ioff; j++){
     /* Bubble down matching interactions*/
-    if( (epst[i]        == epst[j]) && 
+    if( (epst[i]        == epst[j]) &&
         (sigt[i]        == sigt[j]) &&
         (cutofft[i]     == cutofft[j]) &&
-        (cutti[i]       == cutti[j]) && 
+        (cutti[i]       == cutti[j]) &&
         (cutoff_rest[i] == cutoff_rest[j])){
       k++;
       switchij(&epst[k],&epst[j]);
@@ -1111,7 +1111,7 @@ void sort_inter_params(double *eps,double *sig,
      icount = 0;
 
  for(i=ninter-nother+1; i<= ninter; i++){
-   icount++; 
+   icount++;
    index = nunique+icount;
      epst[index]      = epst[i];
      sigt[index]      = sigt[i];
@@ -1161,17 +1161,17 @@ void sort_inter_params(double *eps,double *sig,
   }
 
   for(i=1; i<= ninter; i++){
-   if(inter_label[i] == 2 || 
+   if(inter_label[i] == 2 ||
       inter_label[i] == 4){
 
     for(j=1; j<= (nunique-nother); j++){
-     if( (eps[i] == epst[j]) && 
-         (sig[i] == sigt[j]) && 
+     if( (eps[i] == epst[j]) &&
+         (sig[i] == sigt[j]) &&
          (cutoff[i] == cutofft[j]) &&
          (cutti[i] == cuttit[j]) &&
          (cutoff_res[i] == cutoff_rest[j]) ){
-       inter_map_index[i] = j; 
-     }/*endif*/ 
+       inter_map_index[i] = j;
+     }/*endif*/
     }/*endfor*/
 
    }/*endif*/
@@ -1187,17 +1187,17 @@ void sort_inter_params(double *eps,double *sig,
 
   for(i=1; i<= ninter; i++){
    if(inter_label[i] == 3 ){
-    for(j=jlow; j<= jup; j++){ 
-     if((awill[i] == awillt[j]) && 
+    for(j=jlow; j<= jup; j++){
+     if((awill[i] == awillt[j]) &&
         (bwill[i] == bwillt[j]) &&
-        (c6m[i]==c6mt[j]) && 
-        (c8m[i]==c8mt[j]) && 
+        (c6m[i]==c6mt[j]) &&
+        (c8m[i]==c8mt[j]) &&
         (c10m[i] == c10mt[j]) &&
-        (cutoff[i] == cutofft[j]) && 
+        (cutoff[i] == cutofft[j]) &&
         (cutti[i] == cuttit[j]) &&
         (cutoff_res[i] == cutoff_res[j]) ){
-       inter_map_index[i] = j; 
-     }/*endif*/ 
+       inter_map_index[i] = j;
+     }/*endif*/
     }/*endfor*/
    }/*endif*/
   }/*endfor*/
@@ -1206,24 +1206,24 @@ void sort_inter_params(double *eps,double *sig,
 /*---------------------------------------------------------------------------*/
 /* Assign  Williams-LJ compare awill bwill c6m c8m c10m eps sig and cutoffs  */
 /*---------------------------------------------------------------------------*/
-   jlow = nunique - nother + n3 + 1; 
+   jlow = nunique - nother + n3 + 1;
    jup  = jlow + n5;
 
   for(i=1; i<= ninter; i++){
    if(inter_label[i] == 5 ){
     for(j=jlow; j<= jup; j++){
-     if( (eps[i] == epst[j]) && 
-         (sig[i] == sigt[j]) && 
-         (awill[i] == awillt[j]) && 
+     if( (eps[i] == epst[j]) &&
+         (sig[i] == sigt[j]) &&
+         (awill[i] == awillt[j]) &&
          (bwill[i] == bwillt[j]) &&
-         (c6m[i] == c6mt[j]) && 
-         (c8m[i] == c8mt[j]) && 
+         (c6m[i] == c6mt[j]) &&
+         (c8m[i] == c8mt[j]) &&
          (c10m[i] == c10mt[j]) &&
-         (cutoff[i] == cutofft[j]) && 
+         (cutoff[i] == cutofft[j]) &&
          (cutti[i] == cuttit[j]) &&
          (cutoff_res[i] == cutoff_rest[j])  ){
-       inter_map_index[i] = j; 
-     }/*endif*/ 
+       inter_map_index[i] = j;
+     }/*endif*/
     }/*endfor*/
    }/*endif*/
   }/*endfor*/
@@ -1233,7 +1233,7 @@ void sort_inter_params(double *eps,double *sig,
 /* and cutoffs  */
 /*--------------------------------------------------------------------------*/
 
-   jlow = nunique - nother + n3 + n5 + 1; 
+   jlow = nunique - nother + n3 + n5 + 1;
    jup  = jlow + n6;
 
 
@@ -1243,17 +1243,17 @@ void sort_inter_params(double *eps,double *sig,
     for(j=jlow; j<= jup; j++){
      if((awill[i] == awillt[j]) &&
         (bwill[i] == bwillt[j]) &&
-        (cwill[i] == cwillt[j]) && 
-        (rm_swit[i] == rm_switt[j]) && 
-        (c6m[i] == c6mt[j]) && 
-        (c8m[i] == c8mt[j]) && 
-        (c9m[i] == c9mt[j]) && 
+        (cwill[i] == cwillt[j]) &&
+        (rm_swit[i] == rm_switt[j]) &&
+        (c6m[i] == c6mt[j]) &&
+        (c8m[i] == c8mt[j]) &&
+        (c9m[i] == c9mt[j]) &&
         (c10m[i] == c10mt[j]) &&
-        (cutoff[i] == cutofft[j]) && 
+        (cutoff[i] == cutofft[j]) &&
         (cutti[i] == cuttit[j]) &&
         (cutoff_res[i] == cutoff_rest[j])  ){
-          inter_map_index[i] = j; 
-      }/*endif*/ 
+          inter_map_index[i] = j;
+      }/*endif*/
     }/*endfor*/
 
    }/*endif*/
@@ -1318,7 +1318,7 @@ void switchij(double *valuei,double *valuej)
   temp     = *valuei;
   *valuei  = *valuej;
   *valuej  = temp;
- 
+
 
 /*==========================================================================*/
 }/*end routine*/
@@ -1334,7 +1334,7 @@ void iswitchij(int *valuei,int *valuej)
   temp     = *valuei;
   *valuei  = *valuej;
   *valuej  = temp;
- 
+
 
 /*==========================================================================*/
 }/*end routine*/

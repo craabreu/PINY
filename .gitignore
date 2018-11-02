@@ -1,2 +1,11 @@
 *.o
 runable/*
+
+# Example output files:
+examples/*/*.confp
+examples/*/*.iavg
+examples/*/*.confv
+examples/*/*.conff
+examples/*/*.out_pos
+examples/*/*.out
+examples/*/*.coords_out

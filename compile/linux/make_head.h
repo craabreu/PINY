@@ -13,11 +13,11 @@ CMALLOC =
 
 # HP compiler
 #--------------------------
-FC = gfortran -DLINUX -DFFTW
-CC = gcc -DLINUX -DFFTW
+FC = gfortran -DLINUX -DFFTW3
+CC = gcc -DLINUX -DFFTW3
 OPT = -Ofast
 OPT_CARE = $(OPT)
 OPT_GRP = $(OPT)
 CFLAGS =
 FFLAGS =
-LIBS =   $(LIB_PATH) $(MALLOC) -lfftw
+LIBS =   $(LIB_PATH) $(MALLOC) -lfftw3

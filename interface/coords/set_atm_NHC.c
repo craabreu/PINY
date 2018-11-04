@@ -91,6 +91,7 @@ void set_atm_NHC(ENSOPTS *ensopts, STATEPOINT *statepoint, SIMOPTS *simopts,
   double *tau_nhc_mol      = class_parse->tau_nhc_mol;
   double *text_nhc_mol     = class_parse->text_nhc_mol;
   double tau_nhc_def       = class_parse->tau_nhc_def;
+  double gamma_nhc_def     = class_parse->gamma_nhc_def;
   double tau_vol           = class_parse->tau_vol;
   double tau_vol_nhc       = class_parse->tau_vol_nhc;
   double state_t_ext       = statepoint->t_ext;
@@ -334,6 +335,7 @@ void set_atm_NHC(ENSOPTS *ensopts, STATEPOINT *statepoint, SIMOPTS *simopts,
     tau_nhc_mol[jmol_typ] /= TIME_CONV;
   }/*endfor*/ 
   tau_nhc_def /= TIME_CONV;
+  gamma_nhc_def *= TIME_CONV;
   tau_vol     /= TIME_CONV;
   tau_vol_nhc /= TIME_CONV;
 

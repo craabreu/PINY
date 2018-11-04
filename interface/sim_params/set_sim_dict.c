@@ -1098,7 +1098,7 @@ void set_sim_dict_nhc(int *num_dict,DICT_WORD *dict[])
 /*========================================================================*/
 /*  0) Malloc the dictionary                                              */ 
 
-  *num_dict =15;
+  *num_dict =16;
   *dict = (DICT_WORD *)cmalloc(*num_dict*sizeof(DICT_WORD))-1;
 
 /*========================================================================*/
@@ -1187,6 +1187,11 @@ void set_sim_dict_nhc(int *num_dict,DICT_WORD *dict[])
         strcpy((*dict)[15].error_mes,"a number >= 1");
         strcpy((*dict)[15].keyword,"cp_therm_heat_fact");
         strcpy((*dict)[15].keyarg,"1.0");
+  /*-----------------------------------------------------------------------*/ 
+  /* 16)\atm_nhc_tau_def{#} */
+        strcpy((*dict)[16].error_mes,"a number > 0 ");
+        strcpy((*dict)[16].keyword,"atm_nhc_gamma_def");
+        strcpy((*dict)[16].keyarg,"0.1");
   /*---------------------------------------------------------------------*/
 /*========================================================================*/
 /*------------------------------------------------------------------------*/

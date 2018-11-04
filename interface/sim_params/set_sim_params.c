@@ -2150,6 +2150,18 @@ void set_sim_params_nhc(CLASS *class,GENERAL_DATA *general_data,BONDED *bonded,
        keyarg_barf(dict,filename_parse->input_name,fun_key,index);
      }/*endif*/
 
+  /* 16)\atm_nhc_gamma_def{#} */
+      sscanf(dict[16].keyarg,"%lg",&(class_parse->gamma_nhc_def));
+      index=16;
+      if(class_parse->gamma_nhc_def <= 0) 
+      keyarg_barf(dict,filename_parse->input_name,fun_key,index);
+      if(class_parse->gamma_nhc_def > 10.0 ){
+      printf("$$$$$$$$$$$$$$$$$$$$$$$$_warning_$$$$$$$$$$$$$$$$$$$$$$$$\n");    
+      printf("You have requested a NHC particle default gamma > 10/fs\n");
+      printf("Are you certain this is what you would like to do?\n");
+      printf("$$$$$$$$$$$$$$$$$$$$$$$$_warning_$$$$$$$$$$$$$$$$$$$$$$$$\n");
+      }/*endif*/
+
 /*========================================================================*/
     }/*end routine*/ 
 /*========================================================================*/

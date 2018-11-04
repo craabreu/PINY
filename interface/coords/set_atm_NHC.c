@@ -354,6 +354,8 @@ void set_atm_NHC(ENSOPTS *ensopts, STATEPOINT *statepoint, SIMOPTS *simopts,
     istart = jatm_jmol_typ_strt[jmol_typ];
     iend   = natm_1mol_jmol_typ[jmol_typ]*nmol_jmol_typ[jmol_typ]
             +jatm_jmol_typ_strt[jmol_typ]-1;
+
+  therm_info_class->gamma_nhc = gamma_nhc_def;
 /*--------------------------------------------------------------------------*/
 /*   1) couple all molecules of this type to global nhc                     */
     if(imol_nhc_opt[jmol_typ]==1){

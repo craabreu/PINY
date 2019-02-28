@@ -61,6 +61,7 @@
     \init_resmp_atm_nhc{off}
     \resmpl_atm_nhc{0}	
     \atm_nhc_tau_def{10.0}
+    \atm_nhc_gamma_def{0.1}
     \yosh_steps_nhc{7}		
     \respa_steps_nhc{4} 
     \atm_nhc_len{4}	

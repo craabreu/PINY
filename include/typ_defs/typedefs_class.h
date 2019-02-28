@@ -383,6 +383,7 @@ typedef struct therm_info{
   double **mass_nhc,**gkt;     /* Lst: Mass,degs free of NHC's;
                                   Lth: num_nhc x len_nhc              */
 
+  double gamma_nhc;            /* Num: NHC friction constant          */
 } THERM_INFO;
 
 typedef struct therm_pos{

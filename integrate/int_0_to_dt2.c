@@ -295,8 +295,7 @@ void int_0_to_dt2_nvt_isok(CLASS *class,BONDED *bonded,GENERAL_DATA *general_dat
   int *inhc_x                = class->therm_info_class.inhc_x;
   int *inhc_y		     = class->therm_info_class.inhc_y;
   int *inhc_z		     = class->therm_info_class.inhc_z;
-  double gamma		     = 1.0/(90.0*20.0*dt);   /* Stochastic Term */
-/*   double gamma		     = 1.0/(20.0*60.0*dt);  Stochastic Term */
+  double gamma       = class->therm_info_class.gamma_nhc;
   int *iseed		     = &class->vel_samp_class.iseed;
   int *iseed2		     = &class->vel_samp_class.iseed2;
   double *qseed		     = &class->vel_samp_class.qseed;

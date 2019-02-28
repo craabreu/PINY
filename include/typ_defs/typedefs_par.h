@@ -32,6 +32,7 @@ typedef struct class_parse{
 
   double tau_vol,tau_vol_nhc;  /* Num: Vol and Vol nhc time scales    */
   double tau_nhc_def;          /* Num: Atm nhc default time scale     */
+  double gamma_nhc_def;        /* Num: Atm nhc default friction const */
 
   int *imol_nhc_opt;           /* Lst: Molecule NHC option;
                                   Lth: nmol_typ                       */

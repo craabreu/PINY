@@ -91,6 +91,7 @@ void set_atm_NHC(ENSOPTS *ensopts, STATEPOINT *statepoint, SIMOPTS *simopts,
   double *tau_nhc_mol      = class_parse->tau_nhc_mol;
   double *text_nhc_mol     = class_parse->text_nhc_mol;
   double tau_nhc_def       = class_parse->tau_nhc_def;
+  double gamma_nhc_def     = class_parse->gamma_nhc_def;
   double tau_vol           = class_parse->tau_vol;
   double tau_vol_nhc       = class_parse->tau_vol_nhc;
   double state_t_ext       = statepoint->t_ext;
@@ -334,6 +335,7 @@ void set_atm_NHC(ENSOPTS *ensopts, STATEPOINT *statepoint, SIMOPTS *simopts,
     tau_nhc_mol[jmol_typ] /= TIME_CONV;
   }/*endfor*/ 
   tau_nhc_def /= TIME_CONV;
+  gamma_nhc_def *= TIME_CONV;
   tau_vol     /= TIME_CONV;
   tau_vol_nhc /= TIME_CONV;
 
@@ -352,6 +354,8 @@ void set_atm_NHC(ENSOPTS *ensopts, STATEPOINT *statepoint, SIMOPTS *simopts,
     istart = jatm_jmol_typ_strt[jmol_typ];
     iend   = natm_1mol_jmol_typ[jmol_typ]*nmol_jmol_typ[jmol_typ]
             +jatm_jmol_typ_strt[jmol_typ]-1;
+
+  therm_info_class->gamma_nhc = gamma_nhc_def;
 /*--------------------------------------------------------------------------*/
 /*   1) couple all molecules of this type to global nhc                     */
     if(imol_nhc_opt[jmol_typ]==1){

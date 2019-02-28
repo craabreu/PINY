@@ -324,6 +324,7 @@ void comm_class_parse_data(CLASS_PARSE *class_parse,int nmol_typ,
   Bcast(&(class_parse->tau_vol),1,MPI_DOUBLE,0,world);
   Bcast(&(class_parse->tau_vol_nhc),1,MPI_DOUBLE,0,world);
   Bcast(&(class_parse->tau_nhc_def),1,MPI_DOUBLE,0,world);
+  Bcast(&(class_parse->gamma_nhc_def),1,MPI_DOUBLE,0,world);
   Barrier(world);
 
 if(nmol_typ > 0){

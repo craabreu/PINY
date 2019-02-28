@@ -245,8 +245,8 @@ void cp_shuffle_prim(double *cpcoefs_cre,double *cpcoefs_cim,int icoef_form,
 /*==========================================================================*/
 /* IV) Free the map                                                         */
 
-   cfree(&(map[1]));
-   cfree(&(temp[1]));
+   free(&(map[1]));
+   free(&(temp[1]));
 
 /*==========================================================================*/
     }/* end routine */

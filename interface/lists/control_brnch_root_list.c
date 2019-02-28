@@ -512,17 +512,17 @@ if(myid==0){
 /*=========================================================================*/
 /*   IX) Free memory                                                    */
 
-  cfree(&(nbrnch_temp[1]));
-  cfree(&(nvalence[1]));
-  cfree(&(my_root[1]));
-  cfree(&(iatm_typ_brnch_flag[1]));
-  cfree(&(root_atm_typ[1])); 
-  cfree(&(jtemp[1]));        
-  cfree(&(iexl_temp[1])); 
-  cfree(&(jatm_add[1])); 
-  cfree(&(jexl_temp[1])); 
-  cfree(&(nexl_atm[1])); 
-  cfree(&(iexl_atm_off[1])); 
+  free(&(nbrnch_temp[1]));
+  free(&(nvalence[1]));
+  free(&(my_root[1]));
+  free(&(iatm_typ_brnch_flag[1]));
+  free(&(root_atm_typ[1])); 
+  free(&(jtemp[1]));        
+  free(&(iexl_temp[1])); 
+  free(&(jatm_add[1])); 
+  free(&(jexl_temp[1])); 
+  free(&(nexl_atm[1])); 
+  free(&(iexl_atm_off[1])); 
 
 /*=========================================================================*/
 /*   VIII) Write out to the screen                                         */

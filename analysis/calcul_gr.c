@@ -888,9 +888,9 @@ void output_gr(CLASS *class,GENERAL_DATA *general_data,ANALYSIS *analysis)
  if(myid_bead==0){
     fclose(frdf);
 
-   cfree(tmp_nr);
-   cfree(tmp_nr1);
-   cfree(tmp_nr2);
+   free(tmp_nr);
+   free(tmp_nr1);
+   free(tmp_nr2);
  }/*endif myid_bead*/
 
  /*-------------------------------------------------------------------------*/

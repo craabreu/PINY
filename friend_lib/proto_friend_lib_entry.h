@@ -3,7 +3,7 @@
 
 void *cmalloc(size_t );
 
-void cfree(void *);
+void free(void *);
 
 void *crealloc(void *,size_t );
 
@@ -21,11 +21,11 @@ int **creall_int_mat(int **,long ,long ,long ,long ,long ,long ,long ,long );
 
 double **creall_mat(double **,long ,long ,long ,long ,long ,long ,long ,long );
 
-void cfree_mat(double **,long , long , long , long );
+void free_mat(double **,long , long , long , long );
 
-void cfree_int_mat(int **,long , long , long , long );
+void free_int_mat(int **,long , long , long , long );
 
-void cfree_tens3(double ***,long ,long ,long ,long ,long ,long );
+void free_tens3(double ***,long ,long ,long ,long ,long ,long );
 
 /*---------------------------------------------------------------------*/
 /*     friend_lib.c                                                    */

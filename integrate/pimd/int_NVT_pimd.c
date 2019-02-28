@@ -599,8 +599,8 @@ void apply_NHC_bead(CLATOMS_INFO *clatoms_info,CLATOMS_POS *clatoms_pos,
       clatoms_vz[ipart] *= int_scr_sc[therm_inhc_z[ipart]];
     /*endfor*/}
 
-    cfree(&(v_nhc_temp[1]));
-    cfree(&(kinet_nhc_temp[1]));
+    free(&(v_nhc_temp[1]));
+    free(&(kinet_nhc_temp[1]));
 
 /*--------------------------------------------------------------------------*/
 /*end routine*/}
@@ -862,8 +862,8 @@ void apply_NHC_bead_par(CLATOMS_INFO *clatoms_info,CLATOMS_POS *clatoms_pos,
       clatoms_vz[ipart] *= int_scr_sc[therm_inhc_z[ipart]];
     /*endfor*/}
 
-    cfree(&(v_nhc_temp[1]));
-    cfree(&(kinet_nhc_temp[1]));
+    free(&(v_nhc_temp[1]));
+    free(&(kinet_nhc_temp[1]));
 
 
 /*--------------------------------------------------------------------------*/

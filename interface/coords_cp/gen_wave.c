@@ -989,51 +989,51 @@ void gen_wave(CLASS *class,GENERAL_DATA *general_data,CP *cp,
 /*===========================================================================*/
 /* free locally assigned memory */
 
-   cfree(&(iatm_atm_typ_cp[1]));
-  if(myid == 0){ cfree(&(fname_ps[1])); }
-   cfree(&(nstate_up_atm[1]));
-   cfree(&(nstate_dn_atm[1]));
+   free(&(iatm_atm_typ_cp[1]));
+  if(myid == 0){ free(&(fname_ps[1])); }
+   free(&(nstate_up_atm[1]));
+   free(&(nstate_dn_atm[1]));
 
-   cfree(&(x[1]));
-   cfree(&(y[1]));
-   cfree(&(z[1]));
+   free(&(x[1]));
+   free(&(y[1]));
+   free(&(z[1]));
 
-   cfree(&(n_ang[1]));
-   cfree(&(ylmr[1]));
-   cfree(&(ylmi[1]));
+   free(&(n_ang[1]));
+   free(&(ylmr[1]));
+   free(&(ylmi[1]));
 
-   cfree(&(dylmr_x[1]));
-   cfree(&(dylmi_x[1]));
-   cfree(&(dylmr_y[1]));
-   cfree(&(dylmi_y[1]));
-   cfree(&(dylmr_z[1]));
-   cfree(&(dylmi_z[1]));
+   free(&(dylmr_x[1]));
+   free(&(dylmi_x[1]));
+   free(&(dylmr_y[1]));
+   free(&(dylmi_y[1]));
+   free(&(dylmr_z[1]));
+   free(&(dylmi_z[1]));
 
-   cfree(&psi_r[1]);
-   cfree(&psi_i[1]);
+   free(&psi_r[1]);
+   free(&psi_i[1]);
 
  for(i=1; i<= natm_typ_cp; i++){
 
   for(j=1; j<=3; j++){
-    cfree(&(gpsi0[i][j][1]));
-    cfree(&(gpsi1[i][j][1]));
-    cfree(&(gpsi2[i][j][1]));
-    cfree(&(gpsi3[i][j][1]));
+    free(&(gpsi0[i][j][1]));
+    free(&(gpsi1[i][j][1]));
+    free(&(gpsi2[i][j][1]));
+    free(&(gpsi3[i][j][1]));
    }/*endfor*/
 
-   cfree(&(gpsi0[i][1]));
-   cfree(&(gpsi1[i][1]));
-   cfree(&(gpsi2[i][1]));
-   cfree(&(gpsi3[i][1]));
+   free(&(gpsi0[i][1]));
+   free(&(gpsi1[i][1]));
+   free(&(gpsi2[i][1]));
+   free(&(gpsi3[i][1]));
  }/*endfor*/
 
-   cfree(&(gpsi0[1]));
-   cfree(&(gpsi1[1]));
-   cfree(&(gpsi2[1]));
-   cfree(&(gpsi3[1]));
+   free(&(gpsi0[1]));
+   free(&(gpsi1[1]));
+   free(&(gpsi2[1]));
+   free(&(gpsi3[1]));
 
-  cfree_mat(gpsi_now,1,natm_typ_cp,1,3);
-  cfree(&(gpsi00[1]));
+  free_mat(gpsi_now,1,natm_typ_cp,1,3);
+  free(&(gpsi00[1]));
 
 /*===========================================================================*/
 
@@ -1144,9 +1144,9 @@ void  splin_btrans(int *nsplin,double **gpsi0,double **gpsi1,
 /*========================================================================*/
 /* free locally assigned memory                                           */
 
-  cfree(&(g[1]));
-  cfree(&(r[1]));
-  cfree(&(rphi[1]));
+  free(&(g[1]));
+  free(&(r[1]));
+  free(&(rphi[1]));
 
 /*==========================================================================*/
    }/*end routine*/
@@ -1351,8 +1351,8 @@ void  fit_spline(double *c0i,double *c1i,double *c2i,
 
 
 /* free locally assigned memory */
-    cfree(&(d[1]));
-    cfree(&(diag[1]));
+    free(&(d[1]));
+    free(&(diag[1]));
 
 /*==========================================================================*/
    }/*end routine*/

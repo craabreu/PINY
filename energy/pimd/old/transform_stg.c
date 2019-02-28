@@ -369,8 +369,8 @@ void spread_coord(CLATOMS_INFO *clatoms_info,CLATOMS_POS *clatoms_pos,
 /*========================================================================*/
 /* III) Tuck variables back and free memory                               */
 
-  cfree(&pos[1]);
-  cfree(&gauss[1]);
+  free(&pos[1]);
+  free(&gauss[1]);
 
 /*========================================================================*/
 /* IV) Error mesage */

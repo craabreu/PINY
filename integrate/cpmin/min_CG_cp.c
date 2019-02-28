@@ -364,9 +364,9 @@ void min_CG_cp(CLASS *class,BONDED *bonded,GENERAL_DATA *general_data,CP *cp,
 /* ii) Free the memory                                                      */
 
 
-   cfree(&(zeta_up[1]));
+   free(&(zeta_up[1]));
    if( (cp_lsda== 1) && (nstate_dn != 0) ){
-    cfree(&(zeta_dn[1]));
+    free(&(zeta_dn[1]));
    }
 
 /*-------------------------------------------------------------------------*/
@@ -828,19 +828,19 @@ void line_min_cp(CLASS *class,BONDED *bonded,GENERAL_DATA *general_data,CP *cp,
 /*========================================================================*/
 /* free locally assigned memory                                           */
 
-   cfree(&(cre_up_old[1]));
-   cfree(&(cim_up_old[1]));
+   free(&(cre_up_old[1]));
+   free(&(cim_up_old[1]));
  if(cp_lsda == 1){
-   cfree(&(cre_dn_old[1]));
-   cfree(&(cim_dn_old[1]));
+   free(&(cre_dn_old[1]));
+   free(&(cim_dn_old[1]));
  }/*end if*/
 
-   cfree(&(guess[1]));
-   cfree(&(etot[1]));
-   cfree(&(C[1]));
-   cfree(&(B[1]));
-   cfree(&(A[1]));
-   cfree(&(Ainv[1]));
+   free(&(guess[1]));
+   free(&(etot[1]));
+   free(&(C[1]));
+   free(&(B[1]));
+   free(&(A[1]));
+   free(&(Ainv[1]));
 
 /*========================================================================*/
 }/* end routine */

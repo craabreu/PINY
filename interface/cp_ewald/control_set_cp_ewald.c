@@ -670,11 +670,11 @@ if(cp_on == 1){
 /*=======================================================================*/
 /* IX) Free excess memory                                                */
 
-   cfree(&(hmati_ewd)[1]);
-   cfree(&(hmati_ewd_cp)[1]);
-   cfree(&(kmaxv)[1]);
-   cfree(&(kmaxv_res)[1]);
-   cfree(&(kmax_cp_tmp)[1]);
+   free(&(hmati_ewd)[1]);
+   free(&(hmati_ewd_cp)[1]);
+   free(&(kmaxv)[1]);
+   free(&(kmaxv_res)[1]);
+   free(&(kmax_cp_tmp)[1]);
 
 /*-----------------------------------------------------------------------*/ 
   }/* end routine */
@@ -1572,19 +1572,19 @@ void get_coul_clus_corr(EWALD *ewald,
 
   destroy_para_fft_pkg3d(cp_para_fft_pkg3d_clus); 
 
-  cfree(&(kmax_cp_clus[1]));
-  cfree(&(kmaxv_clus[1]));
-  cfree(&(hmati[1]));
-  cfree(&(zfft[1]));
-  cfree(&(zfft_tmp[1]));
-  cfree(&clus_corr_i[1]);
-  cfree(&spl_corr_short3[1]);
-  cfree(&spl_corr_short2[1]);
-  cfree(&spl_corr_short1[1]);
-  cfree(&spl_corr_short0[1]);
-  cfree(&f_spl[1]);
-  cfree(&g_spl[1]);
-  cfree(cp_para_fft_pkg3d_clus);
+  free(&(kmax_cp_clus[1]));
+  free(&(kmaxv_clus[1]));
+  free(&(hmati[1]));
+  free(&(zfft[1]));
+  free(&(zfft_tmp[1]));
+  free(&clus_corr_i[1]);
+  free(&spl_corr_short3[1]);
+  free(&spl_corr_short2[1]);
+  free(&spl_corr_short1[1]);
+  free(&spl_corr_short0[1]);
+  free(&f_spl[1]);
+  free(&g_spl[1]);
+  free(cp_para_fft_pkg3d_clus);
 
 /*=========================================================================*/
 /* X) Output to screen */
@@ -2022,24 +2022,24 @@ void get_coul_1D_corr(EWALD *ewald,COMMUNICATE *communicate,
 /*=========================================================================*/
 /* IV) Free memory */
 
-     cfree(&zfft_y[1]);
-     cfree(&zfft_z[1]);
-     cfree(&work_1_y[1]);
-     cfree(&work_2_y[1]);
-     cfree(&work_1_z[1]);
-     cfree(&work_2_z[1]);
-     cfree(&ifax_y[1]);
-     cfree(&ifax_z[1]);
+     free(&zfft_y[1]);
+     free(&zfft_z[1]);
+     free(&work_1_y[1]);
+     free(&work_2_y[1]);
+     free(&work_1_z[1]);
+     free(&work_2_z[1]);
+     free(&ifax_y[1]);
+     free(&ifax_z[1]);
 
-     cfree(&anode[1]);
-     cfree(&weight[1]);
-     cfree(&w2_y[1]);
-     cfree(&w2_z[1]);
-     cfree(&prew_y[1]);
-     cfree(&prew_z[1]);
+     free(&anode[1]);
+     free(&weight[1]);
+     free(&w2_y[1]);
+     free(&w2_z[1]);
+     free(&prew_y[1]);
+     free(&prew_z[1]);
 
-     cfree_mat(iy,1,ngauss,1,(nkb_max+1));
-     cfree_mat(iz,1,ngauss,1,(nkc_max+1));
+     free_mat(iy,1,ngauss,1,(nkb_max+1));
+     free_mat(iz,1,ngauss,1,(nkc_max+1));
 
 
 /*=========================================================================*/
@@ -2229,10 +2229,10 @@ void get_coul_2D_corr(EWALD *ewald,COMMUNICATE *communicate,
  /*----------------------------------------------------*/
  /* iv) free the memory                                */
 
-    cfree(&zfft[1]);
-    cfree(&work_1[1]);
-    cfree(&work_2[1]);
-    cfree(&ifax[1]);
+    free(&zfft[1]);
+    free(&work_1[1]);
+    free(&work_2[1]);
+    free(&ifax[1]);
 
   }/*endif*/
 

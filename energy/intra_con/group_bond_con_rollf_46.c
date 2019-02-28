@@ -1345,7 +1345,7 @@ for(igrp=1;igrp <= ngrp; igrp++) {
     free_dmatrix(dvz,1,4,1,ngrp);
 
     free_dmatrix(amat,1,36,1,ngrp);
-    cfree(&(tamat[1]));
+    free(&(tamat[1]));
     free_dmatrix(avec,1,6,1,ngrp);
     free_dmatrix(xlam,1,6,1,ngrp);
     free_dvector(txlam,1,6);

@@ -181,11 +181,11 @@ void calcul_freqs(CLASS *class,GENERAL_DATA *general_data,ANALYSIS *analysis)
 /*========================================================================*/
 /*  Free scratch memory                                                   */
 
-  cfree(&(scr_mat[1]));
-  cfree(&(scr_mat_mass[1]));
-  cfree(&(hess_vecs[1]));
-  cfree(&(rs1[1]));
-  cfree(&(rs2[1]));
+  free(&(scr_mat[1]));
+  free(&(scr_mat_mass[1]));
+  free(&(hess_vecs[1]));
+  free(&(rs1[1]));
+  free(&(rs2[1]));
 
 /*=======================================================================*/
 }/*end function*/

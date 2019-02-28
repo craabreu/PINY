@@ -442,7 +442,7 @@ void parse(CLASS *class,BONDED *bonded,GENERAL_DATA *general_data,CP *cp,
   if(cp_on==1){
    if(myid_state<np_states){
       read_coef(cp,general_data,class,&filename_parse,&cp_parse,tot_memory);
-    if(myid == 0){cfree(&(filename_parse.vps_name[1]));} 
+    if(myid == 0){free(&(filename_parse.vps_name[1]));} 
     if(cp->cpcoeffs_info.cp_elf_calc_frq > 0) mall_properties(cp);
    }/*endif*/
 

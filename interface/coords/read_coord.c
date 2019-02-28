@@ -947,14 +947,14 @@ void read_coord(CLASS *class,GENERAL_DATA *general_data,
 /*========================================================================*/
 /*  XI) Close file, free arrays                                            */ 
   
-  cfree(&x_tmp[1]);
-  cfree(&y_tmp[1]);
-  cfree(&z_tmp[1]);
-  cfree(&v_nhc_tmp[1]);
-  if(myid_state!=0){cfree(&v_vol_nhc[1]);}
+  free(&x_tmp[1]);
+  free(&y_tmp[1]);
+  free(&z_tmp[1]);
+  free(&v_nhc_tmp[1]);
+  if(myid_state!=0){free(&v_vol_nhc[1]);}
   if(myid==0){ 
     fclose(fp_dnamei); 
-    cfree(line);
+    free(line);
   }/*endif*/
 
 /*========================================================================*/

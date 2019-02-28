@@ -3093,7 +3093,7 @@ void vps_atm_list(PSEUDO *pseudo, CELL *cell, CLATOMS_POS *clatoms_pos,
                          ewd_scr,for_scr); 
    }/*endif*/
 
-   cfree(&(inonloc_index[1]));
+   free(&(inonloc_index[1]));
 
 /*-----------------------------------------------------------------------*/
    }/* end routine */
@@ -3253,7 +3253,7 @@ void non_loc_chng_ord(CLATOMS_POS *clatoms_pos, CLATOMS_INFO *clatoms_info,
     printf("scanf : ");scanf("%d",&i);
 #endif
 
-    cfree(&rank[1]);
+    free(&rank[1]);
 
   }/*endif*/
 

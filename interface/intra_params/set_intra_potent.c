@@ -100,8 +100,8 @@ void set_intra_potent(BONDED *bonded,BUILD_INTRA *build_intra,
                         fun_dict,num_fun_dict);
     printf("Extracting the pure bends from the Urey-Bradley list\n");
     extract_pure_bends(&(bonded->bend_bnd),&(bonded->bend),build_intra);
-    cfree(&(build_intra->ibend_bnd_typ_pure[1]));
-    cfree(&(build_intra->ibend_bnd_typ_map[1]));
+    free(&(build_intra->ibend_bnd_typ_pure[1]));
+    free(&(build_intra->ibend_bnd_typ_map[1]));
   }/*endif*/
 
   /*=======================================================================*/
@@ -114,7 +114,7 @@ void set_intra_potent(BONDED *bonded,BUILD_INTRA *build_intra,
   }/*endif*/
 
 /*=======================================================================*/
-  cfree(&fun_dict[1]);
+  free(&fun_dict[1]);
 
   PRINT_LINE_DASH;
   printf("Completed the search of the data bases ");
@@ -495,8 +495,8 @@ void set_bond_potent(BOND *bond,GRP_BOND_CON *grp_bond_con,
 /*-----------------------------------------------------------------------*/
 /* D) Free the bases. */
     if(nbase>0){
-      cfree(&bond_base[1]);
-      cfree(&cbond_base[1]);
+      free(&bond_base[1]);
+      free(&cbond_base[1]);
     }/*endif*/
   }/*endif*/
 
@@ -622,8 +622,8 @@ void set_bond_potent(BOND *bond,GRP_BOND_CON *grp_bond_con,
 /*-----------------------------------------------------------------------*/
 /* D) Free the bases. */
   if(nbase>0){
-    cfree(&bond_base[1]);
-    cfree(&cbond_base[1]);
+    free(&bond_base[1]);
+    free(&cbond_base[1]);
   }/*endif*/
 
 /*=======================================================================*/
@@ -647,46 +647,46 @@ void set_bond_potent(BOND *bond,GRP_BOND_CON *grp_bond_con,
 /*=======================================================================*/
 /* IV) Free the memory. */
   if(ntyp_pow>0){
-    cfree(&ifound_pow[1]);
-    cfree(&isearch_pow[1]);
-    cfree(&igood_pow[1]);
-    cfree(&cbond_pow[1]);
+    free(&ifound_pow[1]);
+    free(&isearch_pow[1]);
+    free(&igood_pow[1]);
+    free(&cbond_pow[1]);
   }/*endif*/
   if(ntyp_con>0){
-    cfree(&ifound_con[1]);
-    cfree(&isearch_con[1]);
-    cfree(&igood_con[1]);
-    cfree(&cbond_con[1]);
+    free(&ifound_con[1]);
+    free(&isearch_con[1]);
+    free(&igood_con[1]);
+    free(&cbond_con[1]);
   }/*endif*/
   if(ntyp_21>0){
-    cfree(&ifound_21[1]);
-    cfree(&isearch_21[1]);
-    cfree(&igood_21[1]);
-    cfree(&cbond_21[1]);
+    free(&ifound_21[1]);
+    free(&isearch_21[1]);
+    free(&igood_21[1]);
+    free(&cbond_21[1]);
   }/*endif*/
   if(ntyp_23>0){
-    cfree(&ifound_23[1]);
-    cfree(&isearch_23[1]);
-    cfree(&igood_23[1]);
-    cfree(&cbond_23[1]);
+    free(&ifound_23[1]);
+    free(&isearch_23[1]);
+    free(&igood_23[1]);
+    free(&cbond_23[1]);
   }/*endif*/
   if(ntyp_33>0){
-    cfree(&ifound_33[1]);
-    cfree(&isearch_33[1]);
-    cfree(&igood_33[1]);
-    cfree(&cbond_33[1]);
+    free(&ifound_33[1]);
+    free(&isearch_33[1]);
+    free(&igood_33[1]);
+    free(&cbond_33[1]);
   }/*endif*/
   if(ntyp_watt_33>0){
-    cfree(&ifound_watt_33[1]);
-    cfree(&isearch_watt_33[1]);
-    cfree(&igood_watt_33[1]);
-    cfree(&cbond_watt_33[1]);
+    free(&ifound_watt_33[1]);
+    free(&isearch_watt_33[1]);
+    free(&igood_watt_33[1]);
+    free(&cbond_watt_33[1]);
   }/*endif*/
   if(ntyp_43>0){
-    cfree(&ifound_43[1]);
-    cfree(&isearch_43[1]);
-    cfree(&igood_43[1]);
-    cfree(&cbond_43[1]);
+    free(&ifound_43[1]);
+    free(&isearch_43[1]);
+    free(&igood_43[1]);
+    free(&cbond_43[1]);
   }/*endif*/
 /*-----------------------------------------------------------------------*/
 }  /*end routine*/
@@ -772,8 +772,8 @@ void set_bend_potent(BEND *bend,BUILD_INTRA *build_intra,
 /*-----------------------------------------------------------------------*/
 /* D) Free the bases. */
     if(nbase>0){
-      cfree(&bend_base[1]);
-      cfree(&cbend_base[1]);
+      free(&bend_base[1]);
+      free(&cbend_base[1]);
     }/*endif*/
   }/*endif*/
 
@@ -806,8 +806,8 @@ void set_bend_potent(BEND *bend,BUILD_INTRA *build_intra,
 /*-----------------------------------------------------------------------*/
 /* D) Free the bases. */
   if(nbase>0){
-    cfree(&bend_base[1]);
-    cfree(&cbend_base[1]);
+    free(&bend_base[1]);
+    free(&cbend_base[1]);
   }/*endif*/
 
 /*=======================================================================*/
@@ -817,10 +817,10 @@ void set_bend_potent(BEND *bend,BUILD_INTRA *build_intra,
 /*=======================================================================*/
 /* IV) Free the memory. */
   if(ntyp_con>0){
-    cfree(&ifound_con[1]);
-    cfree(&isearch_con[1]);
-    cfree(&igood_con[1]);
-    cfree(&cbend_con[1]);
+    free(&ifound_con[1]);
+    free(&isearch_con[1]);
+    free(&igood_con[1]);
+    free(&cbend_con[1]);
   }/*endif*/
 /*-----------------------------------------------------------------------*/
 }  /*end routine*/
@@ -932,8 +932,8 @@ void set_tors_potent(TORS *tors,BUILD_INTRA *build_intra,
 /*-----------------------------------------------------------------------*/
 /* D) Free the bases. */
     if(nbase>0){
-      cfree(&tors_base[1]);
-      cfree(&ctors_base[1]);
+      free(&tors_base[1]);
+      free(&ctors_base[1]);
     }/*endif*/
   }/*endif*/
 
@@ -977,8 +977,8 @@ void set_tors_potent(TORS *tors,BUILD_INTRA *build_intra,
 /*-----------------------------------------------------------------------*/
 /* D) Free the bases. */
   if(nbase>0){
-    cfree(&tors_base[1]);
-    cfree(&ctors_base[1]);
+    free(&tors_base[1]);
+    free(&ctors_base[1]);
   }/*endif*/
 
 /*=======================================================================*/
@@ -990,16 +990,16 @@ void set_tors_potent(TORS *tors,BUILD_INTRA *build_intra,
 /*=======================================================================*/
 /* IV) Free the memory. */
   if(ntyp_pow>0){
-    cfree(&ifound_pow[1]);
-    cfree(&isearch_pow[1]);
-    cfree(&igood_pow[1]);
-    cfree(&ctors_pow[1]);
+    free(&ifound_pow[1]);
+    free(&isearch_pow[1]);
+    free(&igood_pow[1]);
+    free(&ctors_pow[1]);
   }/*endif*/
   if(ntyp_con>0){
-    cfree(&ifound_con[1]);
-    cfree(&isearch_con[1]);
-    cfree(&igood_con[1]);
-    cfree(&ctors_con[1]);
+    free(&ifound_con[1]);
+    free(&isearch_con[1]);
+    free(&igood_con[1]);
+    free(&ctors_con[1]);
   }/*endif*/
 /*-----------------------------------------------------------------------*/
 }  /*end routine*/
@@ -1081,8 +1081,8 @@ void set_onfo_potent(ONFO *onfo,BUILD_INTRA *build_intra,
 /*-----------------------------------------------------------------------*/
 /* D) Free the bases. */
     if(nbase>0){
-      cfree(&onfo_base[1]);
-      cfree(&confo_base[1]);
+      free(&onfo_base[1]);
+      free(&confo_base[1]);
     }/*endif*/
   }/*endif*/
 
@@ -1115,8 +1115,8 @@ void set_onfo_potent(ONFO *onfo,BUILD_INTRA *build_intra,
 /*-----------------------------------------------------------------------*/
 /* D) Free the bases. */
   if(nbase>0){
-    cfree(&onfo_base[1]);
-    cfree(&confo_base[1]);
+    free(&onfo_base[1]);
+    free(&confo_base[1]);
   }/*endif*/
 
 /*=======================================================================*/
@@ -1126,10 +1126,10 @@ void set_onfo_potent(ONFO *onfo,BUILD_INTRA *build_intra,
 /*=======================================================================*/
 /* IV) Free the memory. */
   if(ntyp>0){
-    cfree(&ifound[1]);
-    cfree(&isearch[1]);
-    cfree(&igood[1]);
-    cfree(&confo[1]);
+    free(&ifound[1]);
+    free(&isearch[1]);
+    free(&igood[1]);
+    free(&confo[1]);
   }/*endif*/
 /*-----------------------------------------------------------------------*/
 }  /*end routine*/
@@ -1212,8 +1212,8 @@ void set_bend_bnd_potent(BEND_BND *bend_bnd,BUILD_INTRA *build_intra,
 /*-----------------------------------------------------------------------*/
 /* D) Free the bases. */
     if(nbase>0){
-      cfree(&bend_bnd_base[1]);
-      cfree(&cbend_bnd_base[1]);
+      free(&bend_bnd_base[1]);
+      free(&cbend_bnd_base[1]);
     }/*endif*/
   }/*endif*/
 
@@ -1246,8 +1246,8 @@ void set_bend_bnd_potent(BEND_BND *bend_bnd,BUILD_INTRA *build_intra,
 /*-----------------------------------------------------------------------*/
 /* D) Free the bases. */
   if(nbase>0){
-    cfree(&bend_bnd_base[1]);
-    cfree(&cbend_bnd_base[1]);
+    free(&bend_bnd_base[1]);
+    free(&cbend_bnd_base[1]);
   }/*endif*/
 
 /*=======================================================================*/
@@ -1257,10 +1257,10 @@ void set_bend_bnd_potent(BEND_BND *bend_bnd,BUILD_INTRA *build_intra,
 /*=======================================================================*/
 /* IV) Free the memory. */
   if(ntyp>0){
-    cfree(&ifound[1]);
-    cfree(&isearch[1]);
-    cfree(&igood[1]);
-    cfree(&cbend_bnd[1]);
+    free(&ifound[1]);
+    free(&isearch[1]);
+    free(&igood[1]);
+    free(&cbend_bnd[1]);
   }/*endif*/
 /*-----------------------------------------------------------------------*/
 }  /*end routine*/

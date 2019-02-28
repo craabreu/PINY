@@ -533,12 +533,12 @@ void read_hmat(CLASS *class,GENERAL_DATA *general_data,
   
   fclose(fp_dnamei); 
 
-  cfree(line);
-  cfree(restart_type_now);
-  cfree(atm_typ_now);
-  cfree(res_typ_now);
-  cfree(mol_typ_now);
-  cfree(restart_type_spec);
+  free(line);
+  free(restart_type_now);
+  free(atm_typ_now);
+  free(res_typ_now);
+  free(mol_typ_now);
+  free(restart_type_spec);
 
 /*========================================================================*/
 /* XI) Done */

@@ -892,24 +892,24 @@ void test_energy_cp(CLASS *class, BONDED *bonded,
 
   if(num_proc>1){Barrier(comm_states);}
   if(myid_state==0){
-   cfree(&(fx[1]));
-   cfree(&(fy[1]));
-   cfree(&(fz[1]));
+   free(&(fx[1]));
+   free(&(fy[1]));
+   free(&(fz[1]));
   }/*endif*/
   if(num_proc>1){Barrier(comm_states);}
 
-  cfree(&(sx[1]));
-  cfree(&(sy[1]));
-  cfree(&(sz[1]));
+  free(&(sx[1]));
+  free(&(sy[1]));
+  free(&(sz[1]));
 
-  cfree(&(pvten[1]));
-  cfree(&(hmatd[1]));
+  free(&(pvten[1]));
+  free(&(hmatd[1]));
 
-  cfree(&(fcre_up[1]));
-  cfree(&(fcim_up[1]));
+  free(&(fcre_up[1]));
+  free(&(fcim_up[1]));
   if(cp_lsda== 1 && nstate_dn != 0){
-   cfree(&(fcre_dn[1]));
-   cfree(&(fcim_dn[1]));
+   free(&(fcre_dn[1]));
+   free(&(fcim_dn[1]));
   }/*endif*/
 
 /*-------------------------------------------------------------------*/

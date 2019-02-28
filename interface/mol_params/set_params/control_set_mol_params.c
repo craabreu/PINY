@@ -328,8 +328,8 @@ void control_set_mol_params(ATOMMAPS *atommaps,CPOPTS *cpopts,
 /*=======================================================================*/
 /* VI) Free memory                                                       */
 
-  cfree(&mol_ind_chk[1]);
-  cfree(&ifound[1]);
+  free(&mol_ind_chk[1]);
+  free(&ifound[1]);
 
 /*-----------------------------------------------------------------------*/
    }/*end routine*/

@@ -528,8 +528,8 @@ if(error_check_on==1){
    }/*endif*/
 
 
-  cfree(&jtmp1[1]);
-  cfree(&jtmp2[1]);
+  free(&jtmp1[1]);
+  free(&jtmp2[1]);
 
 /*========================================================================*/
 } /*end routine*/ 
@@ -744,10 +744,10 @@ void splin_ecor(ECOR *ecor,EWALD *ewald,CLATOMS_POS *clatoms_pos,int pi_beads,
 
  /*-----------------------------------------------------------*/
  /* v) Free the memory                                       */
-  cfree(&know[1]);
-  cfree(&fknow[1]);
-  cfree(&anode[1]);
-  cfree(&weight[1]);
+  free(&know[1]);
+  free(&fknow[1]);
+  free(&anode[1]);
+  free(&weight[1]);
 
 /*==========================================================================*/ 
 /* IV) Memory summary and Output */

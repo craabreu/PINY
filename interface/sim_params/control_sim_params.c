@@ -278,25 +278,25 @@ void control_sim_params(CLASS *class,GENERAL_DATA *general_data,
 /*=========================================================================*/
 /*   VII) Free the memory                                                  */
 
-  cfree(fun_key);  
-  cfree(filename_parse->input_name);
-  cfree(filename_parse->simname);
-  cfree(&dict_fun[1]);
-  cfree(&dict_list[1]);
-  cfree(&dict_cp[1]);
-  cfree(&dict_gen[1]);
-  cfree(&dict_vpot[1]);
-  cfree(&dict_run[1]);
-  cfree(&dict_nhc[1]);
-  cfree(&dict_vol[1]);
-  cfree(&dict_write[1]);
-  cfree(&dict_pimd[1]);
-  cfree(&dict_velo[1]);
-  cfree(&dict_msqd[1]);
-  cfree(&dict_iikt_iso[1]);
-  cfree(&dict_ickt_iso[1]);
-  cfree(&dict_rdf[1]);
-  cfree(&dict_harmonic[1]);
+  free(fun_key);  
+  free(filename_parse->input_name);
+  free(filename_parse->simname);
+  free(&dict_fun[1]);
+  free(&dict_list[1]);
+  free(&dict_cp[1]);
+  free(&dict_gen[1]);
+  free(&dict_vpot[1]);
+  free(&dict_run[1]);
+  free(&dict_nhc[1]);
+  free(&dict_vol[1]);
+  free(&dict_write[1]);
+  free(&dict_pimd[1]);
+  free(&dict_velo[1]);
+  free(&dict_msqd[1]);
+  free(&dict_iikt_iso[1]);
+  free(&dict_ickt_iso[1]);
+  free(&dict_rdf[1]);
+  free(&dict_harmonic[1]);
 
 /*========================================================================*/
     }/*end routine*/ 

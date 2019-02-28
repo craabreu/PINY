@@ -516,9 +516,9 @@ void shake_23(GRP_BOND_CON *grp_bond_con,
     free_dvector(p33,1,ngrp);
 
 
-    cfree(&(ind1[1]));
-    cfree(&(ind2[1]));
-    cfree(&(ind3[1]));
+    free(&(ind1[1]));
+    free(&(ind2[1]));
+    free(&(ind3[1]));
 
 
 /*=======================================================================*/
@@ -809,9 +809,9 @@ void rattle_23(GRP_BOND_CON *grp_bond_con,
    free_dmatrix(xlam,1,2,1,ngrp); 
 
 
-   cfree(&(ind1[1]));
-   cfree(&(ind2[1]));
-   cfree(&(ind3[1]));
+   free(&(ind1[1]));
+   free(&(ind2[1]));
+   free(&(ind3[1]));
 
 
 

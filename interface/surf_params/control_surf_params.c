@@ -139,8 +139,8 @@ void control_surf_params(SURFACE *surface,
                     isearch,nsearch,natm_srch,user_surf_name);
         assign_base_surf(surf_base,nbase,ifound,natm_typ,sig,eps,surf_label,
                          zcut_off,zmin_spl,isearch,nsearch);
-        cfree(&surf_base[1]);
-        cfree(&csurf_base[1]);
+        free(&surf_base[1]);
+        free(&csurf_base[1]);
       }/*endif*/
     }/*endif*/
 
@@ -167,8 +167,8 @@ void control_surf_params(SURFACE *surface,
                     isearch,nsearch,natm_srch,def_surf_name);
         assign_base_surf(surf_base,nbase,ifound,natm_typ,sig,eps,surf_label,
                          zcut_off,zmin_spl,isearch,nsearch);
-        cfree(&surf_base[1]);
-        cfree(&csurf_base[1]);
+        free(&surf_base[1]);
+        free(&csurf_base[1]);
       }/*endif*/
     }/*endif*/
 
@@ -229,15 +229,15 @@ void control_surf_params(SURFACE *surface,
 /*=======================================================================*/
 /*  IX) Free temporary memory                                            */
 
-  cfree(&surf_label[1]);
-  cfree(&eps[1]);
-  cfree(&sig[1]);
-  cfree(fun_key);
-  cfree(&csurf[1]);
-  cfree(&ifound[1]);
-  cfree(&isearch[1]);
-  cfree(&igood[1]);
-  if(myid==0){cfree(&fun_dict[1]);}
+  free(&surf_label[1]);
+  free(&eps[1]);
+  free(&sig[1]);
+  free(fun_key);
+  free(&csurf[1]);
+  free(&ifound[1]);
+  free(&isearch[1]);
+  free(&igood[1]);
+  if(myid==0){free(&fun_dict[1]);}
 
 /*=======================================================================*/
 /* X) Write to screen                                                    */
@@ -518,9 +518,9 @@ void spline_surf(double zmin, double zmax,
 /*==========================================================================*/
 /* IV) Free the memory                                                      */
 
-  cfree(&z[1]);
-  cfree(&sw[1]);
-  cfree(&dsw[1]);
+  free(&z[1]);
+  free(&sw[1]);
+  free(&dsw[1]);
 
   *dz_spl_ret  = dz_spl;
   *dzi_spl_ret = dzi_spl;

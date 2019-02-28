@@ -944,7 +944,7 @@ void sngl_pack_rho_dual_par(double *zfft,double *zfft_tmp,double *rfft,
 
   }
 
-   cfree(&(ind_tmp[1]));
+   free(&(ind_tmp[1]));
 
  }/*endif iset_map_flag */
 
@@ -1003,8 +1003,8 @@ void sngl_pack_rho_dual_par(double *zfft,double *zfft_tmp,double *rfft,
 /*-----------------------------------------------------------------------*/
 /* free locally assigned memory                                          */
  
-   cfree(&(pcount[1]));
-   cfree(&(pcount_map[1]));
+   free(&(pcount[1]));
+   free(&(pcount_map[1]));
 
 /*-----------------------------------------------------------------------*/
    }/*end routine*/ 
@@ -1899,7 +1899,7 @@ void make_pme_para_dual_map(int n_interp_pme_dual,
               &(ioff_lg_sm[1]),&(recv_counts_row_big_small[1]),
               &(rdispls_row_big_small[1]),MPI_INT,comm_lg);
 
-    cfree(&(ioff_lg_sm_tmp[1]));
+    free(&(ioff_lg_sm_tmp[1]));
 
   }/*endif nproc*/
 

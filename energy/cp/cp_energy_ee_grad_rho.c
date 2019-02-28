@@ -461,7 +461,7 @@ void  grad_corr_lda(CPSCR *cpscr,CPEWALD *cpewald,EWALD *ewald,CELL *cell,
         pvten_cp[5] -= (ex_gc + ec_gc);
         pvten_cp[9] -= (ex_gc + ec_gc);
      }/*endif*/
-     cfree(&pv_gga[1]);
+     free(&pv_gga[1]);
 
 /*==========================================================================*/
  }/* end routine */
@@ -1124,7 +1124,7 @@ void  grad_corr_lsda(CPSCR *cpscr,CPEWALD *cpewald,EWALD *ewald,CELL *cell,
         pvten_cp[5] -= (ex_gc + ec_gc);
         pvten_cp[9] -= (ex_gc + ec_gc);
      }/*endif*/
-     cfree(&pv_gga[1]);
+     free(&pv_gga[1]);
 
 
 /*==========================================================================*/

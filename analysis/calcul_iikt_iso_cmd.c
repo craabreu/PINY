@@ -822,16 +822,16 @@ void correl_iikt_iso(CLASS *class, GENERAL_DATA *general_data,
  /* V- Free memory                                                          */
  /*-------------------------------------------------------------------------*/
 
-   cfree(x);
-   cfree(y);
-   cfree(z);
+   free(x);
+   free(y);
+   free(z);
 
-   cfree_mat(tcosx,0,nbkx,0,ncor);
-   cfree_mat(tcosy,0,nbky,0,ncor);
-   cfree_mat(tcosz,0,nbkz,0,ncor);
-   cfree_mat(tsinx,0,nbkx,0,ncor);
-   cfree_mat(tsiny,0,nbky,0,ncor);
-   cfree_mat(tsinz,0,nbkz,0,ncor);
+   free_mat(tcosx,0,nbkx,0,ncor);
+   free_mat(tcosy,0,nbky,0,ncor);
+   free_mat(tcosz,0,nbkz,0,ncor);
+   free_mat(tsinx,0,nbkx,0,ncor);
+   free_mat(tsiny,0,nbky,0,ncor);
+   free_mat(tsinz,0,nbkz,0,ncor);
 
 /*==========================================================================*/
 } /* end routine correl_iikt_iso */

@@ -212,15 +212,15 @@ void communicate_output_pimd(CLASS *class)
   }/*endif*/
 
  if(myid==0){
-     cfree(&(scr_x[1]));
-     cfree(&(scr_y[1]));
-     cfree(&(scr_z[1]));
-     cfree(&(scr_nhc_x[1]));
+     free(&(scr_x[1]));
+     free(&(scr_y[1]));
+     free(&(scr_z[1]));
+     free(&(scr_nhc_x[1]));
  }else{
-     cfree(&(scr_temp_x[1]));
-     cfree(&(scr_temp_y[1]));
-     cfree(&(scr_temp_z[1]));
-     cfree(&(scr_temp_nhc_x[1]));
+     free(&(scr_temp_x[1]));
+     free(&(scr_temp_y[1]));
+     free(&(scr_temp_z[1]));
+     free(&(scr_temp_nhc_x[1]));
  }/*endif*/
 
 /*========================================================================*/

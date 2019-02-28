@@ -1079,9 +1079,9 @@ void act_hess_inv_on_grad(double *hess_xx,double *hess_xy,double *hess_xz,
 /*========================================================================*/
 /*  Free scratch memory                                                   */
 
- cfree(&(scr_mat[1]));
- cfree(&(scr_vec[1]));
- cfree(&(ipvt[1]));
+ free(&(scr_mat[1]));
+ free(&(scr_vec[1]));
+ free(&(ipvt[1]));
 
 
 /*========================================================================*/
@@ -1171,9 +1171,9 @@ void act_hess_inv_on_grad_diag(double *hess_xx,double *hess_xy,double *hess_xz,
 /*========================================================================*/
 /*  Free scratch memory                                                   */
 
- cfree(&(scr_mat[1]));
- cfree(&(scr_vec[1]));
- cfree(&(ipvt[1]));
+ free(&(scr_mat[1]));
+ free(&(scr_vec[1]));
+ free(&(ipvt[1]));
 
 #else
 

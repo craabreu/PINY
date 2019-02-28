@@ -104,9 +104,9 @@ void get_clong(int natm_tot,int natm_typ,int ninter,
 /*======================================================================*/
 /* III) Free temporaries                                                */
   
-  cfree(&num_typ[1]);
-  cfree(&index[1]);
-  cfree(&clongm[1]);
+  free(&num_typ[1]);
+  free(&index[1]);
+  free(&clongm[1]);
 
 /*----------------------------------------------------------------------*/
   }/*end routine */

@@ -471,7 +471,7 @@ if(iset_map_upack_flag == 0){
    }
 
  }
-    cfree(&(ind_tmp[1]));
+    free(&(ind_tmp[1]));
 
 }/*endif iset_map_upack_flag*/
 

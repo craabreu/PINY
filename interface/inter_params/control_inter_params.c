@@ -164,8 +164,8 @@ if(myid==0){
                         inter_label,interact->cutoff,interact->cutoff_res,
                         interact->cutti,
                         isearch,nsearch,cinter,cinter_base);
-      cfree(&inter_base[1]);
-      cfree(&cinter_base[1]);
+      free(&inter_base[1]);
+      free(&cinter_base[1]);
     }/*endif*/
   }/*endif*/
 }/*endif*/
@@ -193,8 +193,8 @@ if(myid==0){
                         inter_label,interact->cutoff,interact->cutoff_res,
                         interact->cutti,
                         isearch,nsearch,cinter,cinter_base);
-      cfree(&inter_base[1]);
-      cfree(&cinter_base[1]);
+      free(&inter_base[1]);
+      free(&cinter_base[1]);
     }/*endif*/
   }/*endif*/
 }/*endif*/
@@ -365,29 +365,29 @@ if(num_proc > 1){ Bcast(&ninter_unique,1,MPI_INT,0,comm);}
 /*=======================================================================*/
 /*  IX) Free temporary memory                                            */
 
-  cfree(&inter_label[1]);
-  cfree(&eps[1]);
-  cfree(&sig[1]);
-  cfree(&awill[1]);
-  cfree(&bwill[1]);
-  cfree(&cwill[1]);
-  cfree(&rm_swit[1]);
-  cfree(&c6m[1]);
-  cfree(&c8m[1]);
-  cfree(&c9m[1]);
-  cfree(&c10m[1]);
-  cfree(&temp_cutoff[1]);
-  cfree(&temp_cutoff_res[1]);
-  cfree(&temp_cutti[1]);
+  free(&inter_label[1]);
+  free(&eps[1]);
+  free(&sig[1]);
+  free(&awill[1]);
+  free(&bwill[1]);
+  free(&cwill[1]);
+  free(&rm_swit[1]);
+  free(&c6m[1]);
+  free(&c8m[1]);
+  free(&c9m[1]);
+  free(&c10m[1]);
+  free(&temp_cutoff[1]);
+  free(&temp_cutoff_res[1]);
+  free(&temp_cutti[1]);
 
   if(myid==0){
-    cfree(&fun_dict[1]);
+    free(&fun_dict[1]);
   }/*endif*/
-  cfree(fun_key);
-  cfree(&cinter[1]);
-  cfree(&ifound[1]);
-  cfree(&isearch[1]);
-  cfree(&igood[1]);
+  free(fun_key);
+  free(&cinter[1]);
+  free(&ifound[1]);
+  free(&isearch[1]);
+  free(&igood[1]);
 
 /*=======================================================================*/
 /* X) Write to screen                                                    */
@@ -1285,23 +1285,23 @@ void sort_inter_params(double *eps,double *sig,
 /* free locally assigned memory                  */
 /*-----------------------------------------------*/
 
-  cfree(&epst[1]);
-  cfree(&sigt[1]);
-  cfree(&awillt[1]);
-  cfree(&bwillt[1]);
-  cfree(&cwillt[1]);
-  cfree(&rm_switt[1]);
+  free(&epst[1]);
+  free(&sigt[1]);
+  free(&awillt[1]);
+  free(&bwillt[1]);
+  free(&cwillt[1]);
+  free(&rm_switt[1]);
 
-  cfree(&c6mt[1]);
-  cfree(&c8mt[1]);
-  cfree(&c9mt[1]);
-  cfree(&c10mt[1]);
+  free(&c6mt[1]);
+  free(&c8mt[1]);
+  free(&c9mt[1]);
+  free(&c10mt[1]);
 
-  cfree(&cutofft[1]);
-  cfree(&cutoff_rest[1]);
-  cfree(&cuttit[1]);
+  free(&cutofft[1]);
+  free(&cutoff_rest[1]);
+  free(&cuttit[1]);
 
-  cfree(&ilabelt[1]);
+  free(&ilabelt[1]);
 
 /*==========================================================================*/
 }/*end routine*/

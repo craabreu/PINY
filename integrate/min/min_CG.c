@@ -252,7 +252,7 @@ void min_CG(CLASS *class,BONDED *bonded,GENERAL_DATA *general_data,int ireset)
     energy_control(class,bonded,general_data);
 
 
-   cfree(&(zeta[1]));
+   free(&(zeta[1]));
 
 /*--------------------------------------------------------------------------*/
 /*end routine*/}

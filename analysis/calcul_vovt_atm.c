@@ -515,13 +515,13 @@ void output_vovt_atm_pimd(CLASS *class,GENERAL_DATA *general_data,
      fflush(fvelocity);
      fclose(fvelocity);
 
-     cfree_mat(tmp_vovtx,0,natmr_m1,0,ncor);
-     cfree_mat(tmp_vovty,0,natmr_m1,0,ncor);
-     cfree_mat(tmp_vovtz,0,natmr_m1,0,ncor);
+     free_mat(tmp_vovtx,0,natmr_m1,0,ncor);
+     free_mat(tmp_vovty,0,natmr_m1,0,ncor);
+     free_mat(tmp_vovtz,0,natmr_m1,0,ncor);
 
-     cfree_mat(vovtx_typ,1,natm_typ_real,0,ncor);
-     cfree_mat(vovty_typ,1,natm_typ_real,0,ncor);
-     cfree_mat(vovtz_typ,1,natm_typ_real,0,ncor);
+     free_mat(vovtx_typ,1,natm_typ_real,0,ncor);
+     free_mat(vovty_typ,1,natm_typ_real,0,ncor);
+     free_mat(vovtz_typ,1,natm_typ_real,0,ncor);
 
 /*-----------------------------------------------------------------------*/
 }/* end routine output_vovt_atm_pimd */

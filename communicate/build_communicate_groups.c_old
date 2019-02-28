@@ -281,8 +281,8 @@ void build_communicate_groups(COMMUNICATE *communicate,int numprocs_bead,
 /*------------------------------------------------------------------------*/
 /*  Free the memory                                                       */
 
-      cfree(&ranks[0]);
-      cfree(&level_comm[0]);
+      free(&ranks[0]);
+      free(&level_comm[0]);
 
 /*------------------------------------------------------------------------*/
 } /*end routine*/ 

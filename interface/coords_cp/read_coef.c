@@ -370,13 +370,13 @@ void read_coef_sys_info(CP *cp, FILE *fp_dnameci,int istart, char *dnameci)
 /*==========================================================================*/
 /* VI) Free up some memory */
 
-  cfree(restart_type_now);
-  cfree(restart_type_spec);
-  cfree(dft_type_now);
-  cfree(norb_opt_now);
+  free(restart_type_now);
+  free(restart_type_spec);
+  free(dft_type_now);
+  free(norb_opt_now);
 
   if (ibinary == 1){
-   cfree(c_array);
+   free(c_array);
   }
 
 /*-----------------------------------------------------------------------*/
@@ -738,8 +738,8 @@ void read_coef_fetch_occs(CP *cp, FILE *fp_dnameci, char *dnameci)
  }/*endif for myid==0*/
 
  if( (ibinary == 1) && (myid == 0)){
-     cfree(c_array1);
-     cfree(c_array2);
+     free(c_array1);
+     free(c_array2);
  }/*endif*/
 
 
@@ -1069,8 +1069,8 @@ void read_coef_fetch_coefs(CP *cp, FILE *fp_dnameci, char *dnameci,
 
 /* free locally assigned memory */
   if( (myid == 0) && (ibinary == 1)){
-    cfree(c_array1);
-    cfree(c_array2);
+    free(c_array1);
+    free(c_array2);
   }/*endif*/
 
 /*-----------------------------------------------------------------------*/
@@ -1518,8 +1518,8 @@ void read_coef_fetch_vnhc(CP *cp, FILE *fp_dnameci, char *dnameci)
 
 /*free locally assigned memory */
   if( (myid == 0) && (ibinary == 1)){
-     cfree(c_array1);
-     cfree(c_array2);
+     free(c_array1);
+     free(c_array2);
   }/*endif*/
 
 /*-----------------------------------------------------------------------*/

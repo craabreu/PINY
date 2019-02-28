@@ -33,11 +33,11 @@ void *cmalloc(size_t len)
 /*==========================================================================*/
 /*cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc*/
 /*==========================================================================*/
-/* cfree: Careful free                                                      */
+/* free: Careful free                                                      */
 /*==========================================================================*/
 
 #ifdef NO_CFREE
-void cfree(void *p)
+void free(void *p)
 {/* begin routine */
   free(p);
 }/* end routine */
@@ -519,7 +519,7 @@ double **creall_mat(double **m_old,long nrl_old,long nrh_old,
 
 /* Free old pointer */
 
-   cfree_mat(m_old,nrl_old,nrh_old,ncl_old,nch_old);
+   free_mat(m_old,nrl_old,nrh_old,ncl_old,nch_old);
 
 /* return pointer to array of pointers to rows */
    return m_new;  
@@ -587,7 +587,7 @@ int **creall_int_mat(int **m_old,long nrl_old,long nrh_old,
 
 /* Free old pointer */
 
-   cfree_int_mat(m_old,nrl_old,nrh_old,ncl_old,nch_old);
+   free_int_mat(m_old,nrl_old,nrh_old,ncl_old,nch_old);
 
 /* return pointer to array of pointers to rows */
    return m_new;  
@@ -597,10 +597,10 @@ int **creall_int_mat(int **m_old,long nrl_old,long nrh_old,
 /*==========================================================================*/
 /*cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc*/
 /*==========================================================================*/
-/* cfree_mat: Careful free a double matrix                                  */
+/* free_mat: Careful free a double matrix                                  */
 /*==========================================================================*/
 
-void cfree_mat(double **m,long nrl, long nrh, long ncl, long nch)
+void free_mat(double **m,long nrl, long nrh, long ncl, long nch)
 {
   free((char *) (m[nrl]+ncl-NR_END));
   free((char *) (m+nrl-NR_END));
@@ -609,10 +609,10 @@ void cfree_mat(double **m,long nrl, long nrh, long ncl, long nch)
 /*==========================================================================*/
 /*cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc*/
 /*==========================================================================*/
-/* cfree_int_mat: Careful free a integer matrix                             */
+/* free_int_mat: Careful free a integer matrix                             */
 /*==========================================================================*/
 
-void cfree_int_mat(int **m,long nrl, long nrh, long ncl, long nch)
+void free_int_mat(int **m,long nrl, long nrh, long ncl, long nch)
 {
   free((char *) (m[nrl]+ncl-NR_END));
   free((char *) (m+nrl-NR_END));
@@ -621,10 +621,10 @@ void cfree_int_mat(int **m,long nrl, long nrh, long ncl, long nch)
 /*==========================================================================*/
 /*cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc*/
 /*==========================================================================*/
-/* cfree_tens3: Careful free a double rank 3 tensor                         */
+/* free_tens3: Careful free a double rank 3 tensor                         */
 /*==========================================================================*/
 
-void cfree_tens3(double ***m,long nrl,long nrh,long ncl,long nch,
+void free_tens3(double ***m,long nrl,long nrh,long ncl,long nch,
                              long ndl,long ndh)
 {
   free((char *) (m[nrl][ncl]+ndl-NR_END));

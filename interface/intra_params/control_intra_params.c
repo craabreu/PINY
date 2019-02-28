@@ -387,32 +387,32 @@ void control_intra_params(double *tot_memory,CLATOMS_INFO *clatoms_info,
 /*========================================================================*/
 /*  X) Free memory                */                                     
   
-  cfree(fun_key);
-  cfree(filename);
+  free(fun_key);
+  free(filename);
 
-  cfree(&dict_intra.atm_dict[1]);
-  cfree(&dict_intra.intra_dict[1]);
-  cfree(&dict_intra.mol_name_dict[1]);
-  cfree(&dict_intra.word[0]);
-  cfree(&dict_intra.fun_dict[1]);
+  free(&dict_intra.atm_dict[1]);
+  free(&dict_intra.intra_dict[1]);
+  free(&dict_intra.mol_name_dict[1]);
+  free(&dict_intra.word[0]);
+  free(&dict_intra.fun_dict[1]);
 
-  cfree(&build_intra.mask_atm[1]);
-  cfree(&build_intra.bond_site[1]);
-  cfree(&build_intra.index_atm[1]);
-  cfree(&build_intra.iatm_ind_chk[1]);
-  cfree(&build_intra.cbond_typ_pow[1]);
-  cfree(&build_intra.cbond_typ_con[1]);
-  cfree(build_intra.cbond_typ_now);
-  cfree(&build_intra.cbend_typ_pow[1]);
-  cfree(&build_intra.cbend_typ_con[1]);
-  cfree(build_intra.cbend_typ_now);
-  cfree(&build_intra.ctors_typ_pow[1]);
-  cfree(&build_intra.ctors_typ_con[1]);
-  cfree(build_intra.ctors_typ_now);
-  cfree(&build_intra.confo_typ[1]);
-  cfree(build_intra.confo_typ_now); 
-  cfree(&build_intra.cbend_bnd_typ[1]);
-  cfree(build_intra.cbend_bnd_typ_now);
+  free(&build_intra.mask_atm[1]);
+  free(&build_intra.bond_site[1]);
+  free(&build_intra.index_atm[1]);
+  free(&build_intra.iatm_ind_chk[1]);
+  free(&build_intra.cbond_typ_pow[1]);
+  free(&build_intra.cbond_typ_con[1]);
+  free(build_intra.cbond_typ_now);
+  free(&build_intra.cbend_typ_pow[1]);
+  free(&build_intra.cbend_typ_con[1]);
+  free(build_intra.cbend_typ_now);
+  free(&build_intra.ctors_typ_pow[1]);
+  free(&build_intra.ctors_typ_con[1]);
+  free(build_intra.ctors_typ_now);
+  free(&build_intra.confo_typ[1]);
+  free(build_intra.confo_typ_now); 
+  free(&build_intra.cbend_bnd_typ[1]);
+  free(build_intra.cbend_bnd_typ_now);
 
 /*=======================================================================*/
 /*  X) Write out synopsis                                               */

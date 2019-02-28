@@ -126,8 +126,8 @@ void exl_sort(int *n, int index[],int jndex[],int ind_max)
     if(mask[i]==1){isub += 1;}
   }/*endfor*/
   *n = isub-1;
-  cfree(&kndex[1]);
-  cfree(&mask[1]);
+  free(&kndex[1]);
+  free(&mask[1]);
 
 /*-----------------------------------------------------------------------*/
 } /*end routine*/ 

@@ -594,7 +594,7 @@ void shake_46(GRP_BOND_CON *grp_bond_con,
    free_dmatrix(xlam,1,6,1,ngrp);
    free_dmatrix(avec,1,6,1,ngrp);
    free_dmatrix(amat,1,36,1,ngrp);
-   cfree(&(tamat[1]));
+   free(&(tamat[1]));
    free_dmatrix(dxl,1,6,1,ngrp);
    free_dmatrix(dij,1,6,1,ngrp);
    free_dmatrix(dx,1,6,1,ngrp);
@@ -628,10 +628,10 @@ void shake_46(GRP_BOND_CON *grp_bond_con,
    free_dvector(p23,1,ngrp);
    free_dvector(p33,1,ngrp);
 
-   cfree(&(ind1[1]));
-   cfree(&(ind2[1]));
-   cfree(&(ind3[1]));
-   cfree(&(ind4[1]));
+   free(&(ind1[1]));
+   free(&(ind2[1]));
+   free(&(ind3[1]));
+   free(&(ind4[1]));
 
 /*==========================================================================*/
 } /* end routine */
@@ -1033,16 +1033,16 @@ for(igrp=1;igrp <= ngrp; igrp++) {
     free_dmatrix(dvz,1,4,1,ngrp);
 
     free_dmatrix(amat,1,36,1,ngrp);
-    cfree(&(tamat[1]));
+    free(&(tamat[1]));
     free_dmatrix(avec,1,6,1,ngrp);
     free_dmatrix(xlam,1,6,1,ngrp);
     free_dvector(txlam,1,6);
 
 
-    cfree(&(ind1[1]));
-    cfree(&(ind2[1]));
-    cfree(&(ind3[1]));
-    cfree(&(ind4[1]));
+    free(&(ind1[1]));
+    free(&(ind2[1]));
+    free(&(ind3[1]));
+    free(&(ind4[1]));
 
 /*=======================================================================*/
 } /* end routine */

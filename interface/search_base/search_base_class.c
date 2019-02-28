@@ -122,11 +122,11 @@ void search_base(int nbase,int nbase2,CATM_LAB *cdata_base,
 
 /*==========================================================================*/
 /* IV Free the memory.                                                      */
-  cfree(&wild[1]);
-  cfree(&wild_bas[1]);
-  cfree(&wild_typ[1]);
-  cfree(&ind_fwd[1]);
-  cfree(&ind_bas[1]);
+  free(&wild[1]);
+  free(&wild_bas[1]);
+  free(&wild_typ[1]);
+  free(&ind_fwd[1]);
+  free(&ind_bas[1]);
 /*--------------------------------------------------------------------------*/
 }/*end routine*/
 /*==========================================================================*/

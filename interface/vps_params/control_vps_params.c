@@ -455,14 +455,14 @@ void control_vps_params(PSEUDO *pseudo,CELL *cell,
 /*  V) Free                                                 */
 
   if(myid==0){
-    cfree(&vps_file[1]);
-    cfree(fun_key);
-    cfree(filename);
-    cfree(&word[1]);
-    cfree(&fun_dict[1]);
-    cfree(&vps_dict[1]);
-    cfree(&vps_dict_tmp[1]);
-    cfree(cvps_typ);
+    free(&vps_file[1]);
+    free(fun_key);
+    free(filename);
+    free(&word[1]);
+    free(&fun_dict[1]);
+    free(&vps_dict[1]);
+    free(&vps_dict_tmp[1]);
+    free(cvps_typ);
   }/*endif*/
 
 /*==========================================================================*/
@@ -1145,13 +1145,13 @@ void make_vps_splin(char *vps_file,int loc_opt,int n_ang,
                      iang,natm_typ_gh,n_ang_max_gh,myid);
      }/* endfor:channels */
 
-     cfree(&(wgh_tmp[1]));
-     cfree(&(c0[1]));
-     cfree(&(c1[1]));
-     cfree(&(c2[1]));
-     cfree(&(c3[1]));
-     cfree(&(r[1]));
-     cfree(&(dvl[1]));
+     free(&(wgh_tmp[1]));
+     free(&(c0[1]));
+     free(&(c1[1]));
+     free(&(c2[1]));
+     free(&(c3[1]));
+     free(&(r[1]));
+     free(&(dvl[1]));
 
     }/*endif GAUSS-HERMITE*/
 
@@ -1241,7 +1241,7 @@ void make_vps_splin(char *vps_file,int loc_opt,int n_ang,
        }/*endfor: radial channels */
       }/* endfor:angular channels */
 
-      cfree(nrad_l_tmp);
+      free(nrad_l_tmp);
 
     } /* endif:GOEDECKER nonlocal */
 
@@ -1249,11 +1249,11 @@ void make_vps_splin(char *vps_file,int loc_opt,int n_ang,
 /*   VII) Free memory                                                       */
 
     if(ivps_label != 4) {
-      cfree(&(v_rphi[1]));
-      cfree(&(v_loc[1]));
-      if(ivps_label != 2) cfree(&(r[1]));
+      free(&(v_rphi[1]));
+      free(&(v_loc[1]));
+      if(ivps_label != 2) free(&(r[1]));
     }/*endif*/
-    cfree(&(g[1]));
+    free(&(g[1]));
 
 
 /*==========================================================================*/

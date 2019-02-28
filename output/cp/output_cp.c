@@ -1893,10 +1893,10 @@ if(myid==0){
 }/*endif:myid==0*/
 
  if( (ibinary == 1) && (myid == 0)){
-   cfree(c_array1);
-   cfree(c_array2);
-   cfree(c_array3); 
-   cfree(c_array4);  
+   free(c_array1);
+   free(c_array2);
+   free(c_array3); 
+   free(c_array4);  
  }/*endif*/
 
 
@@ -1984,8 +1984,8 @@ void write_dump_occ_cp(FILE *fp_dnamec,CP *cp,int myid,int ibinary)
 
 /* free locally assigned memory  */
  if( (myid == 0) && (ibinary == 1)){
-        cfree(c_array1);
-        cfree(c_array2);  
+        free(c_array1);
+        free(c_array2);  
  }
 
 /*==========================================================================*/
@@ -2545,8 +2545,8 @@ void write_dump_coef_cp(FILE *fp_dnamec,CP *cp,CLASS *class,int ibinary)
 
 /* free locally assigned memory */
   if( (myid == 0) && (ibinary == 1)){
-        cfree(c_array1);
-        cfree(c_array2); 
+        free(c_array1);
+        free(c_array2); 
   }/*endif */
 
 /*==========================================================================*/
@@ -2931,8 +2931,8 @@ void write_dump_extended_cp(FILE *fp_dnamec,CP *cp,CLASS *class,
 
 /* free locally assigned memory */
   if( (myid == 0) && (ibinary == 1)){
-     cfree(c_array1);
-     cfree(c_array2);  
+     free(c_array1);
+     free(c_array2);  
   }/*endif*/
 
 /*==========================================================================*/

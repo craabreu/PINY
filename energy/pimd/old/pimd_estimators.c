@@ -198,9 +198,9 @@ void get_pimd_spread(CLATOMS_INFO *clatoms_info, CLATOMS_POS *clatoms_pos,
  }/*endif*/
 
 if(imall==1){
-    cfree(&x1[1]);
-    cfree(&y1[1]);
-    cfree(&z1[1]);
+    free(&x1[1]);
+    free(&y1[1]);
+    free(&z1[1]);
 }/*endif*/
 
 /*--------------------------------------------------------------------------*/

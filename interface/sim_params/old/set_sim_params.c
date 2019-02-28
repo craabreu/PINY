@@ -2393,8 +2393,8 @@ void set_sim_params_write(CLASS *class,GENERAL_DATA *general_data,
 
 /*========================================================================*/
 
-  cfree(strip);
-  cfree(strip2);
+  free(strip);
+  free(strip2);
 
 /*========================================================================*/
     }/*end routine*/ 
@@ -2873,8 +2873,8 @@ void set_sim_params_iikt_iso(CLASS *class,GENERAL_DATA *general_data,
   if(ifound==0) keyarg_barf(dict,filename_parse->input_name,fun_key,index);
  /*-----------------------------------------------------------------------*/
 
-  cfree(&tmp[0]);
-  cfree(&tmp2[0]);
+  free(&tmp[0]);
+  free(&tmp2[0]);
 /*========================================================================*/
     }/* end routine set_sim_params_iikt_iso */
 /*========================================================================*/

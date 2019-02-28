@@ -62,7 +62,7 @@ void bond_coef(DICT_WORD *dict,char file_name[],char fun_key[],
        sscanf(dict[5].keyarg,"%lg",&real_key_arg);
        bond_base[ibase].eq = real_key_arg/BOHR;
        ifound = 0;
-       cfree(pot_typ);
+       free(pot_typ);
        return;
       }
 
@@ -192,7 +192,7 @@ void bond_coef(DICT_WORD *dict,char file_name[],char fun_key[],
        bond_base[ibase].dc_5 = 5.0*bond_base[ibase].c_5;
        bond_base[ibase].dc_6 = 6.0*bond_base[ibase].c_6;
 
-       cfree(pot_typ);
+       free(pot_typ);
 /*==========================================================================*/
 } /* end routine */
 /*==========================================================================*/
@@ -369,7 +369,7 @@ void bend_coef(DICT_WORD *dict,char file_name[],char fun_key[],
   bend_base[ibase].ds_5 = 4.0*bend_base[ibase].s_5;
   bend_base[ibase].ds_6 = 5.0*bend_base[ibase].s_6;
 
-  cfree(pot_typ);
+  free(pot_typ);
 /*=======================================================================*/
 } /* end routine */
 /*========================================================================*/
@@ -759,7 +759,7 @@ void tors_coef(DICT_WORD *dict,char file_name[],char fun_key[],
   tors_base[ibase].ds_5 = 4.0*tors_base[ibase].s_5;
   tors_base[ibase].ds_6 = 5.0*tors_base[ibase].s_6;
   
-  cfree(pot_typ);
+  free(pot_typ);
 
 /*=======================================================================*/
 } /* end routine */
@@ -833,7 +833,7 @@ void onfo_coef(DICT_WORD *dict,char file_name[],char fun_key[],
   index=3;
   if(ifound < 0) keyarg_barf(dict,file_name,fun_key,index); 
   
-  cfree(pot_typ);
+  free(pot_typ);
 
 /*========================================================================*/
 } /* end routine */
@@ -1151,7 +1151,7 @@ void bend_bnd_coef(DICT_WORD *dict,char file_name[],char fun_key[],
 /*==========================================================================*/
 /* DONE */
 
-       cfree(pot_typ);
+       free(pot_typ);
 
 /*--------------------------------------------------------------------------*/
 } /* end routine */

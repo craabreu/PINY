@@ -990,17 +990,17 @@ if(error_check_on==1){
 /*==========================================================================*/
 /* IV) Done */
 
-  cfree(&(fx[1]));
-  cfree(&(fy[1]));
-  cfree(&(fz[1]));
-  cfree(&(fcre_up[1]));
-  cfree(&(fcim_up[1]));
+  free(&(fx[1]));
+  free(&(fy[1]));
+  free(&(fz[1]));
+  free(&(fcre_up[1]));
+  free(&(fcim_up[1]));
   if(cp->cpopts.cp_lsda == 1){
-   cfree(&(fcre_dn[1]));
-   cfree(&(fcim_dn[1]));
+   free(&(fcre_dn[1]));
+   free(&(fcim_dn[1]));
   }
-  cfree(&(pvten[1]));
-  cfree(&(hmatd[1]));
+  free(&(pvten[1]));
+  free(&(hmatd[1]));
 
   /*-------------------------------------------------------------------*/
     }/*end routine */

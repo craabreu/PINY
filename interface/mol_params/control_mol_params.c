@@ -272,17 +272,17 @@ void control_mol_params(CLASS *class,GENERAL_DATA *general_data,
     bonded->rbar_sig_free.hist_rn = cmall_mat(1,nfree,1,nhist_bar);
   }/*endif*/
 
-  cfree(fun_key);
-  cfree(word);
-  cfree(&dict_mol.fun_dict[1]);
-  cfree(&dict_mol.mol_dict[1]);
-  cfree(&dict_mol.wave_dict[1]);
-  cfree(&dict_mol.bond_free_dict[1]);
-  cfree(&dict_mol.bend_free_dict[1]);
-  cfree(&dict_mol.tors_free_dict[1]);
-  cfree(&dict_mol.rbar_free_dict[1]);
-  cfree(&dict_mol.user_base_dict[1]);
-  cfree(&dict_mol.def_base_dict[1]);
+  free(fun_key);
+  free(word);
+  free(&dict_mol.fun_dict[1]);
+  free(&dict_mol.mol_dict[1]);
+  free(&dict_mol.wave_dict[1]);
+  free(&dict_mol.bond_free_dict[1]);
+  free(&dict_mol.bend_free_dict[1]);
+  free(&dict_mol.tors_free_dict[1]);
+  free(&dict_mol.rbar_free_dict[1]);
+  free(&dict_mol.user_base_dict[1]);
+  free(&dict_mol.def_base_dict[1]);
 
   for(jmol_typ=1;jmol_typ<=nmol_typ;jmol_typ++){
 

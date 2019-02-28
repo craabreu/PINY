@@ -874,7 +874,7 @@ void assign_bonded_forc(BONDED *bonded,CLASS *class)
     }/*endif*/
 
 
-    cfree(type);
+    free(type);
 
 #ifdef DEBUG
 
@@ -1148,9 +1148,9 @@ void assign_thermo_forc(CLASS *class)
   }/*endfor*/
 #endif
 
-  cfree(&itherm_share_min[1]);
-  cfree(&itherm_proc[1]);
-  cfree(&itherm_share_last[1]);
+  free(&itherm_share_min[1]);
+  free(&itherm_proc[1]);
+  free(&itherm_share_last[1]);
 
 /*========================================================================*/
 } /* end routine */
@@ -1393,9 +1393,9 @@ void assign_bead_thermo_forc(CLASS *class)
   }/*endfor*/
 #endif
 
-  cfree(&itherm_share_min[1]);
-  cfree(&itherm_proc[1]);
-  cfree(&itherm_share_last[1]);
+  free(&itherm_share_min[1]);
+  free(&itherm_proc[1]);
+  free(&itherm_share_last[1]);
 
 /*========================================================================*/
 } /* end routine */

@@ -190,8 +190,8 @@ void spline_fit(double *c0i, double *c1i, double *c2i, double *c3i,
   }
   c2i[nsplin] = 0.0;
   c3i[nsplin] = 0.0;
-  cfree(&d[1]);
-  cfree(&diag[1]);
+  free(&d[1]);
+  free(&diag[1]);
 
 /*--------------------------------------------------------------------------*/
    } /* spline_fit */

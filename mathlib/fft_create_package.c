@@ -1362,8 +1362,8 @@ void create_pme_comm_full_g(int n_interp,PARA_FFT_PKG3D *pme_pkg)
   nfft_size          = MAX3(nfft_size,nrecv_dn,nrecv_up);
   pme_pkg->nfft_size = nfft_size;
 
-  cfree(&senddspls_tmp[1]);
-  cfree(&ndata_tot[1]);
+  free(&senddspls_tmp[1]);
+  free(&ndata_tot[1]);
 
 /*-------------------------------------------------------------------------*/
    }/*end routine*/
@@ -1443,70 +1443,70 @@ void destroy_para_fft_pkg3d(PARA_FFT_PKG3D *para_fft_pkg3d)
 
 /*==========================================================================*/
 
-  cfree(&(ifax_a_f[1]));
-  cfree(&(ifax_b_f[1]));
-  cfree(&(ifax_c_f[1]));
+  free(&(ifax_a_f[1]));
+  free(&(ifax_b_f[1]));
+  free(&(ifax_c_f[1]));
 
-  cfree(&(ifax_a_r[1]));
-  cfree(&(ifax_b_r[1]));
-  cfree(&(ifax_c_r[1]));
+  free(&(ifax_a_r[1]));
+  free(&(ifax_b_r[1]));
+  free(&(ifax_c_r[1]));
 
-  cfree(&(work_1a_f[1]));
-  cfree(&(work_1b_f[1]));
-  cfree(&(work_1c_f[1]));
+  free(&(work_1a_f[1]));
+  free(&(work_1b_f[1]));
+  free(&(work_1c_f[1]));
 
-  cfree(&(work_1a_r[1]));
-  cfree(&(work_1b_r[1]));
-  cfree(&(work_1c_r[1]));
+  free(&(work_1a_r[1]));
+  free(&(work_1b_r[1]));
+  free(&(work_1c_r[1]));
 
-  cfree(&(work_2a_f[1]));
-  cfree(&(work_2b_f[1]));
-  cfree(&(work_2c_f[1]));
+  free(&(work_2a_f[1]));
+  free(&(work_2b_f[1]));
+  free(&(work_2c_f[1]));
 
-  cfree(&(work_2a_r[1]));
-  cfree(&(work_2b_r[1]));
-  cfree(&(work_2c_r[1]));
+  free(&(work_2a_r[1]));
+  free(&(work_2b_r[1]));
+  free(&(work_2c_r[1]));
 
-  cfree(&(ka_fft_kc_red[1]));
-  cfree(&(ka_fft_kc[1]));
-  cfree(&(kb_fft_kc[1]));
-  cfree(&(nkb_fft_kc[1]));
+  free(&(ka_fft_kc_red[1]));
+  free(&(ka_fft_kc[1]));
+  free(&(kb_fft_kc[1]));
+  free(&(nkb_fft_kc[1]));
 
-  cfree(&(ska_fft_kb_proc_all[1]));
-  cfree(&(eka_fft_kb_proc_all[1]));
-  cfree(&(skc_fft_kb_proc_all[1]));
-  cfree(&(ekc_fft_kb_proc_all[1]));
-  cfree(&(sum_fft_kb_proc[1]));
+  free(&(ska_fft_kb_proc_all[1]));
+  free(&(eka_fft_kb_proc_all[1]));
+  free(&(skc_fft_kb_proc_all[1]));
+  free(&(ekc_fft_kb_proc_all[1]));
+  free(&(sum_fft_kb_proc[1]));
 
   if(num_proc>1) {
-   cfree(&(sendcounts_fft_kb[1]));
-   cfree(&(senddspls_fft_kb[1]));
-   cfree(&(recvcounts_fft_kb[1]));
-   cfree(&(recvdspls_fft_kb[1]));
+   free(&(sendcounts_fft_kb[1]));
+   free(&(senddspls_fft_kb[1]));
+   free(&(recvcounts_fft_kb[1]));
+   free(&(recvdspls_fft_kb[1]));
   }/* endif */
 
-  cfree(&(skb_fft_ka_proc_all[1]));
-  cfree(&(ekb_fft_ka_proc_all[1]));
-  cfree(&(skc_fft_ka_proc_all[1]));
-  cfree(&(ekc_fft_ka_proc_all[1]));
+  free(&(skb_fft_ka_proc_all[1]));
+  free(&(ekb_fft_ka_proc_all[1]));
+  free(&(skc_fft_ka_proc_all[1]));
+  free(&(ekc_fft_ka_proc_all[1]));
 
   if(num_proc>1){
-   cfree(&(sendcounts_fft_ka[1]));
-   cfree(&(senddspls_fft_ka[1]));
-   cfree(&(recvcounts_fft_ka[1]));
-   cfree(&(recvdspls_fft_ka[1]));
+   free(&(sendcounts_fft_ka[1]));
+   free(&(senddspls_fft_ka[1]));
+   free(&(recvcounts_fft_ka[1]));
+   free(&(recvdspls_fft_ka[1]));
   }/* endif */
 
 
   if(num_proc>1){
-    cfree(&(recv_counts_rho[1]));
-    cfree(&(displs_rho[1]));
-    cfree(&(recv_counts_coef[1]));
+    free(&(recv_counts_rho[1]));
+    free(&(displs_rho[1]));
+    free(&(recv_counts_coef[1]));
   }/*endif*/
 
-  cfree(&(map_proc[1]));
-  cfree(&(map_c_proc[1]));
-  cfree(&(map_proc_post[1]));
+  free(&(map_proc[1]));
+  free(&(map_c_proc[1]));
+  free(&(map_proc_post[1]));
 
 /*-----------------------------------------------------------------------*/
   }/*end routine*/ 
@@ -1745,7 +1745,7 @@ void para_fft_gen3d_init(PARA_FFT_PKG3D *para_fft_pkg3d)
 #endif
   
 #ifdef FFTW3
- cfree(dummy);
+ free(dummy);
 #endif  
 
 

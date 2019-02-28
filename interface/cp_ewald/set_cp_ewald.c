@@ -1257,20 +1257,20 @@ void set_pme_wght(int nktot,int *kastore,int *kbstore,int *kcstore,
 /*========================================================================*/
 /* Free memory */
 
-  cfree(&map_a[1]);
-  cfree(&map_b[1]);
-  cfree(&map_c[1]);
-  cfree(&bden_a_r[1]); 
-  cfree(&bden_a_i[1]); 
-  cfree(&bweight_a[1]);
-  cfree(&bden_b_r[1]); 
-  cfree(&bden_b_i[1]); 
-  cfree(&bweight_b[1]);
-  cfree(&bden_c_r[1]); 
-  cfree(&bden_c_i[1]); 
-  cfree(&bweight_c[1]);
-  cfree(&uk[1]); 
-  cfree(&mn_k[1]); 
+  free(&map_a[1]);
+  free(&map_b[1]);
+  free(&map_c[1]);
+  free(&bden_a_r[1]); 
+  free(&bden_a_i[1]); 
+  free(&bweight_a[1]);
+  free(&bden_b_r[1]); 
+  free(&bden_b_i[1]); 
+  free(&bweight_b[1]);
+  free(&bden_c_r[1]); 
+  free(&bden_c_i[1]); 
+  free(&bweight_c[1]);
+  free(&uk[1]); 
+  free(&mn_k[1]); 
 /*--------------------------------------------------------------------------*/
 } /* set_pme_map */
 /*==========================================================================*/

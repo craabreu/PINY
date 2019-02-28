@@ -198,8 +198,8 @@ void set_mol_params(FILENAME_PARSE*filename_parse,char fun_key[],
   if(ifound==0){
     keyarg_barf(mol_dict,filename_parse->molsetname,fun_key,index);
   }/*endif*/
-  cfree(strip);
-  cfree(strip2);
+  free(strip);
+  free(strip2);
 
 /*-----------------------------------------------------------------------*/
 /*  13)\hydrog_con_opt{} */
